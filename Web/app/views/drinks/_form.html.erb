@@ -1,0 +1,34 @@
+<%=form_for @drink, :html=>{:class=>'form-horizontal'} do |f|%>
+	<%if @drink.new_record?%>
+		<legend>Add a Drink to the Recipe List</legend>
+	<%else%>
+		<legend>Edit Drink Recipe</legend>
+	<%end%>
+
+	<fieldset>
+		<div class="control-group">
+			<%=f.label :name, :class=>'control-label'%>
+			<div class="controls">
+				<%=f.text_field :name, :class=>'input-xlarge'%>
+			</div>
+		</div>
+		<div class="control-group">
+			<%=f.label :pours, 'Ingredients', :class=>'control-label'%>
+			<%@drink.pours.each_with_index do |pour, index|%>
+				<div class="control-group">
+					<div class="controls">
+							<%=f.fields_for 'pours[]', pour, :index=>@pour_ids[index] do |p|%>
+								<%=p.select :ingredient, options_from_collection_for_select(@ingredients, :id, :name, pour.ingredient_id), {:include_blank=>true}, :class=>'span2'%> &nbsp
+								<%=p.text_field :seconds, :class=>'input-small'%>
+							<%end%>
+					</div>
+				</div>
+			<%end%>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<%=f.submit nil, :class=>'btn btn-primary'%>
+			</div>
+		</div>
+	</fieldset>
+<%end%>

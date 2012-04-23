@@ -1,0 +1,13 @@
+<ul class="breadcrumb">
+	<li><%=link_to 'Drinks', drinks_path%><span class="divider"> / </span></li>
+	<li><%=@drink.name%></li>
+</ul>
+
+<h3><%=@drink.name%></h3>
+
+<dl class = "dl-horizontal">
+	<dt>Ingredients</dt>
+	<%@drink.pours.each do |pour|%>
+		<dd><%=pour.ingredient.name%> (<%=pour.seconds.to_s%> seconds)</dd>
+	<%end%>
+</dl>

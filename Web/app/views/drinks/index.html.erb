@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="span12">
+		<p><%=link_to 'Add a new drink', new_drink_path%></p>
+		<legend>Drink Recipes</legend>
+		<table class="table table-condensed table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Ingredients</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<%@drinks.each do |drink|%>
+					<tr>
+						<td><%=link_to drink.name, drink_path(drink)%></td>
+						<td><%=drink.ingredients.collect{|i| i.name}.join(', ').to_s%></td>
+						<td>
+							<%=link_to "Edit", edit_drink_path(drink)%> | <%=link_to "Delete", drink_path(drink), :method=>:delete%>
+						</td>
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+</div>

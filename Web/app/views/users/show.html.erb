@@ -1,0 +1,63 @@
+<div class="row">
+	<div class="span12">
+		<%=form_for @machine do |f|%>
+			<legend>Machine Status</legend>
+			<label class="inline checkbox">
+				<%=f.check_box :active, :class=>'checkbox'%>
+				Active?
+			</label>
+			<%=f.submit nil, :class=>'btn btn-primary'%>
+		<%end%>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span10">
+		<table class="table table-condensed table-striped">
+			<legend>Ingredients</legend>
+			<thead>
+				<tr>
+					<th>Ingredient Name</th>
+					<th>Bottle</th>
+					<th>Available</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<%@ingredients.each do |ingredient|%>
+					<tr>
+						<td><%=ingredient.name%></td>
+						<td><%=ingredient.bottle.to_s%></td>
+						<td><%=ingredient.available.to_s%></td>
+						<td>Edit | Delete </td>
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+	<div class="span2"></div>
+</div>
+
+<div class="row">
+	<div class="span12">
+		<%=form_for @ingredient, :html=>{:class=>'form-horizontal'} do |f|%>
+			<legend>Add an Ingredient</legend>
+			<fieldset>
+				<div class="control-group">
+					<%=f.label :name, "Name", :class=>'control-label'%>
+					<div class="controls">
+						<%=f.text_field :name, :class=>'input-xlarge'%>
+					</div>
+				</div>
+				<div class="control-group">
+					<%=f.label :bottle, "Bottle", :class=>'control-label'%>
+					<div class="controls">
+						<%bottle_range = 1..Machine.bottles%>
+						<%=f.select :bottle, options_for_select(bottle_range.to_a), {:include_blank=>true}, :class=>"span1"%>
+					</div>
+				</div>
+				<%=f.submit nil, :class=>'btn btn-primary'%>
+			</fieldset>
+		<%end%>
+	</div>
+</div>
