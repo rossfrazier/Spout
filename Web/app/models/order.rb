@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
   scope :completed, where(:completed=>true)
 
   after_create do |order|
-    Order.chomp!
+    Chomper.start
   end
 
   def self.next

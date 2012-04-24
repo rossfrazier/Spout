@@ -36,11 +36,7 @@ module Chomper
   def send_request
     uri = URI.parse('http://'+@@machine_ip+'/spout')
     params = Hash.new
-    self.pours.each do |pour|
-      pour.bottle
-      params['p'+pour.bottle.to_s] = pour.seconds
-    end
-
+    self.pours.each { |pour| params['p'+pour.bottle.to_s] = pour.seconds }
     response = Net::HTTP.post_form(uri, params)
     return response.code == 200
   end

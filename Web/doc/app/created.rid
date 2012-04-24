@@ -1,17 +1,17 @@
-Tue, 24 Apr 2012 15:37:28 -0400
+Tue, 24 Apr 2012 16:30:25 -0400
 doc/README_FOR_APP	Tue, 24 Apr 2012 10:04:36 -0400
-app/controllers/application_controller.rb	Tue, 24 Apr 2012 10:04:36 -0400
+app/controllers/application_controller.rb	Tue, 24 Apr 2012 16:11:47 -0400
 app/controllers/drinks_controller.rb	Tue, 24 Apr 2012 10:04:36 -0400
 app/controllers/ingredients_controller.rb	Tue, 24 Apr 2012 10:04:36 -0400
-app/controllers/machines_controller.rb	Tue, 24 Apr 2012 10:04:36 -0400
+app/controllers/machines_controller.rb	Tue, 24 Apr 2012 16:11:47 -0400
 app/controllers/orders_controller.rb	Tue, 24 Apr 2012 10:04:36 -0400
-app/controllers/users_controller.rb	Tue, 24 Apr 2012 10:04:36 -0400
+app/controllers/users_controller.rb	Tue, 24 Apr 2012 16:11:47 -0400
 app/helpers/application_helper.rb	Tue, 24 Apr 2012 10:04:36 -0400
 app/helpers/flash_helper.rb	Tue, 24 Apr 2012 10:04:36 -0400
-app/models/drink.rb	Tue, 24 Apr 2012 10:04:36 -0400
-app/models/ingredient.rb	Tue, 24 Apr 2012 10:04:36 -0400
-app/models/machine.rb	Tue, 24 Apr 2012 10:04:36 -0400
-app/models/order.rb	Tue, 24 Apr 2012 15:15:27 -0400
-app/models/pour.rb	Tue, 24 Apr 2012 10:04:36 -0400
-app/models/user.rb	Tue, 24 Apr 2012 10:04:36 -0400
-lib/chomper.rb	Tue, 24 Apr 2012 15:33:15 -0400
+app/models/drink.rb	Tue, 24 Apr 2012 16:11:47 -0400
+app/models/ingredient.rb	Tue, 24 Apr 2012 16:11:47 -0400
+app/models/machine.rb	Tue, 24 Apr 2012 16:11:47 -0400
+app/models/order.rb	Tue, 24 Apr 2012 16:30:15 -0400
+app/models/pour.rb	Tue, 24 Apr 2012 16:11:47 -0400
+app/models/user.rb	Tue, 24 Apr 2012 16:11:47 -0400
+lib/chomper.rb	Tue, 24 Apr 2012 16:29:43 -0400

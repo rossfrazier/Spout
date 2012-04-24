@@ -172,10 +172,10 @@
           <div class="method-source-code" id="update-source">
             <pre><span class="ruby-comment"># File app/controllers/machines_controller.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
-      <span class="ruby-identifier">machine</span> = <span class="ruby-constant">Machine</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
-      <span class="ruby-identifier">machine</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:machine</span>][<span class="ruby-value">:active</span>], <span class="ruby-value">:ip_address=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:machine</span>][<span class="ruby-value">:ip_address</span>])
-      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:info</span>] = <span class="ruby-string">&quot;Machine status updated.&quot;</span>
-      <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:back</span>
+  <span class="ruby-identifier">machine</span> = <span class="ruby-constant">Machine</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">machine</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-value">:active=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:machine</span>][<span class="ruby-value">:active</span>], <span class="ruby-value">:ip_address=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:machine</span>][<span class="ruby-value">:ip_address</span>])
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:info</span>] = <span class="ruby-string">&quot;Machine status updated.&quot;</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:back</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update-source -->
           

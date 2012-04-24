@@ -187,13 +187,13 @@
           <div class="method-source-code" id="login-source">
             <pre><span class="ruby-comment"># File app/models/user.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">login</span>(<span class="ruby-identifier">fb_data</span>)
-        <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_or_initialize_by_third_party_id</span>(<span class="ruby-identifier">fb_data</span>[<span class="ruby-string">'third_party_id'</span>])
-        <span class="ruby-identifier">user</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">fb_data</span>[<span class="ruby-string">'name'</span>]
-        <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span> = <span class="ruby-identifier">fb_data</span>[<span class="ruby-string">'email'</span>]
-        <span class="ruby-identifier">user</span>.<span class="ruby-identifier">login_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-        <span class="ruby-identifier">user</span>.<span class="ruby-identifier">last_login</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>
-        <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
-        <span class="ruby-keyword">return</span> <span class="ruby-identifier">user</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_or_initialize_by_third_party_id</span>(<span class="ruby-identifier">fb_data</span>[<span class="ruby-string">'third_party_id'</span>])
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">fb_data</span>[<span class="ruby-string">'name'</span>]
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span> = <span class="ruby-identifier">fb_data</span>[<span class="ruby-string">'email'</span>]
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">login_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">last_login</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">now</span>
+  <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">user</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- login-source -->
           
@@ -223,15 +223,15 @@
           <div class="method-source-code" id="request_facebook_data-source">
             <pre><span class="ruby-comment"># File app/models/user.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">request_facebook_data</span>(<span class="ruby-identifier">access_token</span>)
-<span class="ruby-keyword">begin</span>
-        <span class="ruby-identifier">formattedURL</span>=<span class="ruby-string">&quot;https://graph.facebook.com/me?access_token=&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">access_token</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;&amp;fields=third_party_id,email,name&quot;</span>
-        <span class="ruby-identifier">url</span>=<span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">formattedURL</span>)
-        <span class="ruby-identifier">responseJSON</span>=<span class="ruby-identifier">open</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">read</span>
-        <span class="ruby-identifier">response</span>=<span class="ruby-constant">MultiJson</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">responseJSON</span>)
-        <span class="ruby-keyword">return</span> <span class="ruby-identifier">response</span>
-<span class="ruby-keyword">rescue</span> <span class="ruby-constant">OpenURI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPError</span>
-<span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
-<span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">formattedURL</span>=<span class="ruby-string">&quot;https://graph.facebook.com/me?access_token=&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">access_token</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;&amp;fields=third_party_id,email,name&quot;</span>
+    <span class="ruby-identifier">url</span>=<span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">formattedURL</span>)
+    <span class="ruby-identifier">responseJSON</span>=<span class="ruby-identifier">open</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">read</span>
+    <span class="ruby-identifier">response</span>=<span class="ruby-constant">MultiJson</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">responseJSON</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">response</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">OpenURI</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTPError</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- request_facebook_data-source -->
           
