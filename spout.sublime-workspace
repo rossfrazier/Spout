@@ -1,0 +1,260 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"assign",
+				"assignToken"
+			],
+			[
+				"userInfo",
+				"userInfo"
+			],
+			[
+				"Auth",
+				"AuthModel"
+			],
+			[
+				"auth",
+				"authToken"
+			],
+			[
+				"pass",
+				"passwordHash"
+			],
+			[
+				"pas",
+				"passwordHash"
+			],
+			[
+				"new",
+				"newUser"
+			],
+			[
+				"cookie",
+				"cookieAge"
+			],
+			[
+				"checkIfUse",
+				"checkIfUserOwnsEvent"
+			],
+			[
+				"get",
+				"getMessageObjects"
+			],
+			[
+				"getMess",
+				"getMessageIDs"
+			],
+			[
+				"delete",
+				"deleteEvent"
+			],
+			[
+				"dele",
+				"deleteUserAsEventOwner"
+			],
+			[
+				"check",
+				"checkIfNewOrExistingEvent"
+			],
+			[
+				"save",
+				"saveToDB"
+			],
+			[
+				"max",
+				"max_rows"
+			],
+			[
+				"all",
+				"all_records"
+			],
+			[
+				"del",
+				"deleteEvent"
+			],
+			[
+				"eventID",
+				"eventID"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 160.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/webapps/Spout/Spout.ino",
+		"/C/webapps/Spout/Drink.h",
+		"/C/webapps/Spout/Drink.cpp",
+		"/C/webapps/Spout/spout_web/config/database.yml",
+		"/C/webapps/Spout/Pour.h",
+		"/C/webapps/Spout/Pour.cpp",
+		"/C/Users/553577/AppData/Local/Temp/valve.pde",
+		"/C/webapps/Spout/WebServer.h",
+		"/C/Users/553577/AppData/Local/Temp/Temp1_Clicker4Arduino.zip/Clicker4Arduino/iPhoneClickerForArduino/iPhoneClickerForArduino.pde",
+		"/C/Users/553577/Desktop/STARS/Import Templates/Import_Headers.bas",
+		"/C/webapps/rally_server/src/models/user.js",
+		"/C/webapps/rally_server/src/controllers/users.coffee",
+		"/C/webapps/rally_server/src/models/user.coffee",
+		"/C/webapps/rally_server/src/models/index.coffee",
+		"/C/webapps/rally_server/src/models/message.coffee",
+		"/C/webapps/rally_server/src/models/event.coffee",
+		"/C/webapps/kz_backend/routes/index.js",
+		"/C/webapps/rally_server/lib/models/message.js",
+		"/C/webapps/rally_server/lib/models/event.js",
+		"/C/webapps/rally_server/.gitignore",
+		"/C/webapps/rally_server/src/controllers/index.coffee",
+		"/C/webapps/rally_server/src/app.coffee",
+		"/C/webapps/rally_server/src/routes/models/user.coffee",
+		"/C/webapps/rally_server/src/routes/controllers.coffee",
+		"/C/webapps/rally_server/lib/routes/models/user.js",
+		"/C/webapps/rally_server/src/routes/models/index.coffee",
+		"/C/webapps/rally_server/src/routes/index.js",
+		"/C/webapps/rally_server/src/routes/models/user.js",
+		"/C/webapps/rally_server/src/routes/models/index.js",
+		"/C/webapps/rally_server/src/routes/controllers.js",
+		"/C/webapps/rally_server/app.js",
+		"/C/webapps/rally_server/routes/models/index.js",
+		"/C/webapps/rally_server/routes/models/user.js",
+		"/C/webapps/rally_server/routes/controllers.js",
+		"/C/webapps/rally_server/package.json",
+		"/C/webapps/rally_server/src/app.js",
+		"/C/Users/553577/Desktop/CoffeeScript.tmLanguage",
+		"/C/webapps/rally_server/routes/schemas.js",
+		"/C/webapps/kz_backend/app.js",
+		"/C/webapps/rally_server/views/layout.jade",
+		"/C/webapps/kz_backend/views/layout.jade",
+		"/C/webapps/kz_backend/views/index.jade",
+		"/C/webapps/kz_backend/package.json",
+		"/C/webapps/kz_backend/new_app.js",
+		"/C/Users/553577/AppData/Local/Temp/Temp1_iBOSS.zip/iBOSS/Bin/iBOSS.BusinessObjects.dll",
+		"/C/webapps/rally_ios/rally/RYEventsTableViewCell.h",
+		"/C/webapps/kz_backend/routes/refactored_index.js",
+		"/C/webapps/kz_backend/Procfile",
+		"/C/Users/553577/Dropbox/EM-61 Budget Office/Checkbook Flat File Generator/checkbook.rb",
+		"/C/Users/553577/Desktop/generator/generator.rb",
+		"/C/Users/553577/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/553577/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
