@@ -11,3 +11,5 @@
 		<dd><%=pour.ingredient.name%> (<%=pour.seconds.to_s%> seconds)</dd>
 	<%end%>
 </dl>
+
+<%=button_to 'Order this drink', orders_path(:drink=>@drink.id), :class=>'btn'%>
