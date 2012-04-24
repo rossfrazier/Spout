@@ -1,3 +1,11 @@
+=begin
+The Chomper module is responsible for 'chomping' away at the queue of drink orders and sending a request to the Arduino for the drink to be poured. The Chomper should be started (Chomper.start) any time a new order has been created. 
+
+The chomper will check to see if the machine is chomping (a db attribute). If it is, nothing happens (because the chomper is running elsewhere already). If it is not, the chomper will keep popping off the next item on the list of orders, send a web request to the Arduino based on its attributes, and mark the order as complete.  It will keep looping through this until it runs out of orders and tell the machine it is done chomping.  This will start again the next time an order is added.
+
+The chomper is designed to run on another thread to keep other requests from blocking, but this needs to be tested more throughly.
+=end
+
 module Chomper
   require 'net/http'
   require 'open-uri'
