@@ -3,6 +3,8 @@ class CreateMachines < ActiveRecord::Migration
     create_table :machines do |t|
       t.boolean :active
       t.integer :drinks_count
+      t.boolean :chomping, :default=>false
+      t.string :ip_address
 
       t.timestamps
     end

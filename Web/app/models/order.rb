@@ -1,7 +1,13 @@
 class Order < ActiveRecord::Base
-	belongs_to :drink
-	belongs_to :user
+require 'net/http'
+require 'open-uri'
+require 'chomper'
 
-	scope :pending, where(:completed=>false)
-	scope :completed, where(:completed=>true)
+belongs_to :user
+belongs_to :drink
+has_many :pours, :through=>:drink
+
+scope :pending, where(:completed=>false)
+scope :completed, where(:completed=>true)
+
 end

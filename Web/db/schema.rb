@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20120421160026) do
   create_table "ingredients", :force => true do |t|
     t.string   "name"
     t.integer  "bottle"
-    t.boolean  "available",  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20120421160026) do
   create_table "machines", :force => true do |t|
     t.boolean  "active"
     t.integer  "drinks_count"
+    t.boolean  "chomping",     :default => false
+    t.string   "ip_address"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
