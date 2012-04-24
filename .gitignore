@@ -6,3 +6,12 @@ Web/config/database.yml
 *.yml
 *.sublime-project
 *.sublime-workspace
+Web/Gemfile
+Web/Gemfile.lock
+Gemfile
+Gemfile.lock
+.bundle
+*.sqlite3
+*.log
+Web/tmp/
+Web/.sass-cache/
