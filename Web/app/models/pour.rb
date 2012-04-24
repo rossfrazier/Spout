@@ -1,8 +1,8 @@
 class Pour < ActiveRecord::Base
-	belongs_to :drink
-	belongs_to :ingredient
+  belongs_to :drink
+  belongs_to :ingredient
 
-	def bottle
-		self.ingredient.bottle
-	end
+  def bottle
+    self.ingredient.bottle
+  end
 end
