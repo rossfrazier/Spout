@@ -1,8 +1,8 @@
 *.xcodeproj
 Spout.xcodeproj
 .DS_Store
-Web.sublime-project
-Web.sublime-workspace
 database.yml
 Web/config/database.yml
 *.yml
+*.sublime-project
+*.sublime-workspace
