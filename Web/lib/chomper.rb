@@ -1,5 +1,7 @@
 module Chomper
-
+  require 'net/http'
+  require 'open-uri'
+  
   def self.start
     machine = Machine.first
     @@machine_ip = machine.ip_address

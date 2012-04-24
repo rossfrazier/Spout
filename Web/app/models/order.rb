@@ -1,6 +1,4 @@
 class Order < ActiveRecord::Base
-  require 'net/http'
-  require 'open-uri'
   require 'chomper'
   include Chomper
 
