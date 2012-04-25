@@ -4,7 +4,7 @@ class CreateDrinks < ActiveRecord::Migration
       t.string :name
       t.references :user
       t.integer :served_count
-      t.binary :image
+      t.string :image
       t.timestamps
     end
   end

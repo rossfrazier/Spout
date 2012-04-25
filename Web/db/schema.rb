@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20120421160026) do
     t.string   "name"
     t.integer  "user_id"
     t.integer  "served_count"
-    t.binary   "image"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -20,6 +20,7 @@ class DrinksController < ApplicationController
   def create
     drink = Drink.new
     drink.name = params[:drink][:name]
+    drink.image = params[:drink][:image]
     params[:drink][:pours].each do |pour|
       drink.pours.build(:ingredient=>Ingredient.find(pour[:ingredient].to_i), :seconds=>pour[:seconds]) if !pour[:seconds].blank?
     end
@@ -39,6 +40,7 @@ class DrinksController < ApplicationController
   def update
     drink = Drink.find(params[:id])
     drink.name = params[:drink][:name]
+    drink.image = params[:drink][:image]
     params[:drink][:pours].each do |pour_id,pour|
       if pour_id[0..2]=="new"
         if pour[:seconds].to_i > 0

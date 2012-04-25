@@ -12,4 +12,10 @@
 	<%end%>
 </dl>
 
+<ul class = "thumbnails">
+	<li class="span3">
+		<a href = "#" class="thumbnail"><%=image_tag @drink.image_url.to_s%></a>
+	</li>
+</ul>
+
 <%=button_to 'Order this drink', orders_path(:drink=>@drink.id), :class=>'btn'%>
