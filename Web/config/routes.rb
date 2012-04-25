@@ -1,7 +1,7 @@
 Web::Application.routes.draw do
   resources :orders, :only=>[:index,:create,:update,:destroy]
   resources :drinks
-  resources :ingredients
+  resources :ingredients, :except=>[:show]
   resources :users, :only=>[:edit,:update,:show] do
     collection do
       get 'login'
@@ -9,7 +9,7 @@ Web::Application.routes.draw do
     end
   end
 
-  resources :machines, :only=>[:update]
+  resources :machines, :only=>[:update, :create]
 
   root :to=>'drinks#index'
 

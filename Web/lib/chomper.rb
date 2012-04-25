@@ -11,16 +11,27 @@ module Chomper
   require 'open-uri'
   
   def self.start
+    Rails.logger.info "Chomping..."
     machine = Machine.first
     @@machine_ip = machine.ip_address
     return false if machine.chomping
+    Rails.logger.info "Machine is not chomping, forking a new thread..."
 
     thread = Thread.new do
+      Rails.logger.info "In a new thread"
       machine.update_attributes(:chomping=>true)
       while machine.chomping do
+        Rails.logger.info "in the loop"
         if order = Order.next
-          order.update_attributes(:completed=>order.request_sent?)
-          Machine.increment_counter(:drinks_count, machine.id)
+          order.update_attributes(:processing=>true)
+          if order.request_sent?
+            order.update_attributes(:completed=>true, :processing=>false)
+            Machine.increment_counter(:drinks_count, machine.id)
+            Drink.increment_counter(:served_count, order.drink_id)
+          else
+            machine.update_attributes(:chomping=>false)
+            Rails.logger.info 'problem with the arduino'
+          end
         else
           machine.update_attributes(:chomping=>false)
         end
@@ -30,14 +41,21 @@ module Chomper
   end
 
   def request_sent?
-    self.send_request
+    return self.send_request
   end
 
   def send_request
     uri = URI.parse('http://'+@@machine_ip+'/spout')
+    Rails.logger.info uri.to_s
     params = Hash.new
     self.pours.each { |pour| params['p'+pour.bottle.to_s] = pour.seconds }
-    response = Net::HTTP.post_form(uri, params)
-    return response.code == 200
+    Rails.logger.info "about to send a request"
+    if response = Net::HTTP.post_form(uri, params)
+      Rails.logger.info "received a response!"
+      return response.code.to_i == 200
+    else
+      return false
+    end
   end
+
 end

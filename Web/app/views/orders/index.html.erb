@@ -1,0 +1,5 @@
+<legend>Pending Orders</legend>
+<%=render :partial=>'orders_table', :locals=>{:orders=>@pending_orders}%>
+
+<legend>Completed Orders</legend>
+<%=render :partial=>'orders_table', :locals=>{:orders=>@completed_orders}%>

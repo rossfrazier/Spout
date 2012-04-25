@@ -4,6 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.references :drink
       t.references :user
       t.boolean :completed, :default=>false
+      t.boolean :processing, :default=>false
       t.timestamps
     end
   end

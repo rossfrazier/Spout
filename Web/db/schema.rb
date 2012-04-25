@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120421160026) do
     t.integer  "drink_id"
     t.integer  "user_id"
     t.boolean  "completed",  :default => false
+    t.boolean  "processing", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

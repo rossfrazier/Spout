@@ -26,8 +26,6 @@ class UsersController < ApplicationController
   def show
     @machine = Machine.first
     @users = User.all
-    @ingredients = Ingredient.all
-    @ingredient = Ingredient.new
   end
 
   def edit
