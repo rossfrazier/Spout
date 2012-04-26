@@ -46,20 +46,15 @@ module Chomper
   end
 
   def send_request
-    uri = URI.parse('http://'+@@machine_ip+'/machines')
+    uri = URI.parse('http://'+@@machine_ip+'/spout')
     Rails.logger.info "***SENDING TO: "+uri.to_s+" ***"
     params = Hash.new
     self.pours.each { |pour| params['p'+pour.bottle.to_s] = pour.seconds }
     Rails.logger.info "***ABOUT TO SEND REQUEST. PARAMS: "+ params.inspect + " ***"
-    response = Net::HTTP.post_form(uri, params)
 
-    if response == Net::HTTPSuccess
-      Rails.logger.info "*** RECEIVED A RESPONSE. CODE: "+response.code.to_s+" ***"
-      return response.code.to_i == 500
-    else
-      Rails.logger.info "response did not equal -- returning false"
-      return false
-    end
+    response = Net::HTTP.post_form(uri, params)
+    Rails.logger.info "*** RECEIVED A RESPONSE. CODE: "+response.code.to_s+" ***"
+    return response == Net::HTTPSuccess
   end
 
 end
