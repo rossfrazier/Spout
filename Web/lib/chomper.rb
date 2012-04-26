@@ -22,6 +22,7 @@ module Chomper
       machine.update_attributes(:chomping=>true)
 
       while order = Order.next do
+        Rails.logger.info "*** "+order.inspect+" ***"
         Rails.logger.info "***IN A NEW LOOP...***"
         order.update_attributes(:processing=>true)
         if order.request_sent?
