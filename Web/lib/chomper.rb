@@ -45,15 +45,16 @@ module Chomper
   end
 
   def send_request
-    uri = URI.parse('http://'+@@machine_ip+'/spout')
+    uri = URI.parse('http://'+@@machine_ip+'/machines')
     Rails.logger.info uri.to_s
     params = Hash.new
     self.pours.each { |pour| params['p'+pour.bottle.to_s] = pour.seconds }
     Rails.logger.info "about to send a request..should be pouring"
     if response = Net::HTTP.post_form(uri, params)
-      Rails.logger.info "received a response!"
-      return response.code.to_i == 200
+      Rails.logger.info "received a response!"+response.code.to_s
+      return response.code.to_i == 500
     else
+      Rails.logger.info "response did not equal -- returning false"
       return false
     end
   end

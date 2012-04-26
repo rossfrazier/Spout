@@ -8,6 +8,6 @@ class MachinesController < ApplicationController
   end
 
   def create
-  	render :status => 200
+  	render :status => 500
   end
 end

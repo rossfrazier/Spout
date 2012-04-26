@@ -1,5 +1,5 @@
 class Pour < ActiveRecord::Base
-  belongs_to :drink
+  belongs_to :drink, :dependent=>:destroy
   belongs_to :ingredient
 
   def bottle
