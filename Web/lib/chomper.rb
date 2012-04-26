@@ -28,8 +28,9 @@ module Chomper
         if order.request_sent?
           Rails.logger.info "***REQUEST CAME BACK SUCCESSFULLY***"
           order.update_attributes(:completed=>true, :processing=>false)
-          Machine.increment_counter(:drinks_count, machine.id)
-          Drink.increment_counter(:served_count, order.drink_id)
+          #these queries seem to crash the db sometimes
+          #Machine.increment_counter(:drinks_count, machine.id)
+          #Drink.increment_counter(:served_count, order.drink_id)
         else
           throw '***CHOMPER OR ARDUINO FAILURE***'
         end
@@ -54,7 +55,7 @@ module Chomper
 
     response = Net::HTTP.post_form(uri, params)
     Rails.logger.info "*** RECEIVED A RESPONSE. CODE: "+response.code.to_s+" ***"
-    return response == Net::HTTPSuccess
+    return response.code == "200"
   end
 
 end
