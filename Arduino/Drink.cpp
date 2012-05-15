@@ -17,6 +17,7 @@ Drink::Drink(Pour * pours, byte numberOfPours) {
     _numberOfPours = numberOfPours;
 }
 
+//state getters
 bool Drink::isPouring() {
     return _isPouring;
 }
@@ -32,32 +33,15 @@ byte Drink::numberOfPours() {
 //loops through all pour instructions
 void Drink::beginPouring() {
     for (byte i = 0; i < numberOfPours(); i++) {
-        doPour(_allPours[i]);
+        setPouring(true);
+        _allPours[i].doPour();
+        setPouring(false);
     }
-    setPouringComplete(true);
-}
-
-//instructions for an individual pour. this is where opening/closing valves go.
-void Drink::doPour(Pour pour) {
-    //opening and closing valve using pour.bottle(), and an amount of time (e.g. pour.milliseconds())
-    controlValve(OPEN,pour.bottle());
-    delay(pour.milliseconds());
-    controlValve(CLOSE,pour.bottle());
+    setComplete(true);
 }
 
 //private methods (can't be called from outside this file)
-void Drink::controlValve(valveStatus_t shouldValveOpen, byte bottleNumber) {
-    setPouring(shouldValveOpen);
-    if (shouldValveOpen) {
-        Serial.println("valve is open!");
-        digitalWrite(valveTransistorPins[bottleNumber], HIGH);
-    }
-    else {
-        Serial.println("valve is closed!");
-        digitalWrite(valveTransistorPins[bottleNumber], LOW);
-    }
-}
-
+//state setters
 void Drink::setPouring(bool isPouring) {
     _isPouring = isPouring;
 }
