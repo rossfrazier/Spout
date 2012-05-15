@@ -19,14 +19,13 @@ class Drink {
     public:
         Drink(Pour * pours, byte numberOfPours);
     
-        bool isPouring();
-        bool isPouringComplete();
-    
         byte numberOfPours();
     
         void beginPouring();
         void doPour(Pour pour);
-        void controlValve(bool shouldValveOpen, byte bottleNumber);
+
+        bool isPouring();
+        bool isComplete();
 
         /* Stores digitial IO pin information for n number of valve transistors
          * example: valveTransistorPins[0] = 10
@@ -35,11 +34,17 @@ class Drink {
         static const byte valveTransistorPins[];
         
     private:
+        enum valveStatus_t {
+            OPEN,
+            CLOSED
+        };
+        void controlValve(valveStatus_t shouldValveOpen, byte bottleNumber);
+
         void setPouring(bool isPouring);
         bool _isPouring;
     
-        void setPouringComplete(bool complete);
-        bool _isPouringComplete;
+        void setComplete(bool complete);
+        bool _isComplete;
         
         byte _numberOfPours;
         Pour * _allPours;

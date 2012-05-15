@@ -52,14 +52,14 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
         if (poursCount > 0) {
             Drink * drink = new Drink(allPours, poursCount);
             drink -> beginPouring();
-            if (drink -> isPouringComplete()) {
-                server.httpSuccess();
-                
+            if (drink -> isComplete()) {                
                 //deallocate memory for objects
                 delete[] allPours;
                 delete drink;
                 allPours = NULL;
                 drink = NULL;
+
+                server.httpSuccess();
             }
         }
         return;
@@ -67,8 +67,10 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
 }
 
 void setup() {
-    //setup pins as input/output
-    pinMode(Drink::valveTransistorPins[0], OUTPUT); 
+    //setup pins as input/output; sizeOf works for counting elements because it's an array of bytes
+    for (byte i = 0; i < sizeOf(Drink::valveTransistorPins[]); i++) {
+        pinMode(Drink::valveTransistorPins[i], OUTPUT);
+    }
 
     //initialize the ethernet shield 
     Ethernet.begin(mac);
