@@ -68,7 +68,7 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
 
 void setup() {
     //setup pins as input/output; sizeOf works for counting elements because it's an array of bytes
-    for (byte i = 0; i < sizeOf(Drink::valveTransistorPins[]); i++) {
+    for (byte i = 0; i < sizeof(Drink::valveTransistorPins); i++) {
         pinMode(Drink::valveTransistorPins[i], OUTPUT);
     }
 
