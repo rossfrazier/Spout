@@ -53,8 +53,8 @@ void Pour::setSeconds(int seconds) {
 }
 
 //private methods
-void Pour::controlValve(valveStatus_t shouldValveOpen, byte bottleNumber) {
-  if (shouldValveOpen) {
+void Pour::controlValve(valveStatus_t valveStatus, byte bottleNumber) {
+  if (valveStatus==OPEN) {
     Serial.println("valve is open!");
     digitalWrite(Drink::valveTransistorPins[bottleNumber], HIGH);
   }

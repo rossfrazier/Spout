@@ -36,7 +36,7 @@ class Pour {
             OPEN,
             CLOSE
         };
-        static void controlValve(valveStatus_t shouldValveOpen, byte bottleNumber);
+        static void controlValve(valveStatus_t valveStatus, byte bottleNumber);
 
         //instance variables
         byte _bottle;
