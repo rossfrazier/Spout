@@ -11,31 +11,33 @@ module Chomper
   require 'open-uri'
   
   def self.start
-    Rails.logger.info "Chomping..."
+    Rails.logger.info "***CHOMPING...***"
     machine = Machine.first
     @@machine_ip = machine.ip_address
     return false if machine.chomping
-    Rails.logger.info "Machine is not chomping, forking a new thread..."
+    Rails.logger.info "***MACHINE NOT CHOMPING. FORKING A NEW THREAD***"
 
     thread = Thread.new do
-      Rails.logger.info "In a new thread"
+      Rails.logger.info "***IN A NEW THREAD...***"
       machine.update_attributes(:chomping=>true)
-      while machine.chomping do
-        Rails.logger.info "in the loop"
-        if order = Order.next
-          order.update_attributes(:processing=>true)
-          if order.request_sent?
-            order.update_attributes(:completed=>true, :processing=>false)
-            Machine.increment_counter(:drinks_count, machine.id)
-            Drink.increment_counter(:served_count, order.drink_id)
-          else
-            machine.update_attributes(:chomping=>false)
-            Rails.logger.info 'problem with the arduino'
-          end
+
+      while order = Order.next do
+        Rails.logger.info "*** "+order.inspect+" ***"
+        Rails.logger.info "***IN A NEW LOOP...***"
+        order.update_attributes(:processing=>true)
+        if order.request_sent?
+          Rails.logger.info "***REQUEST CAME BACK SUCCESSFULLY***"
+          order.update_attributes(:completed=>true, :processing=>false)
+          #these queries seem to crash the db sometimes
+          #Machine.increment_counter(:drinks_count, machine.id)
+          #Drink.increment_counter(:served_count, order.drink_id)
         else
-          machine.update_attributes(:chomping=>false)
+          throw '***CHOMPER OR ARDUINO FAILURE***'
         end
       end
+
+      machine.update_attributes(:chomping=>false)
+      Rails.logger.info "***ABOUT TO KILL THREAD ***"
       thread.kill
     end
   end
@@ -46,16 +48,14 @@ module Chomper
 
   def send_request
     uri = URI.parse('http://'+@@machine_ip+'/spout')
-    Rails.logger.info uri.to_s
+    Rails.logger.info "***SENDING TO: "+uri.to_s+" ***"
     params = Hash.new
     self.pours.each { |pour| params['p'+pour.bottle.to_s] = pour.seconds }
-    Rails.logger.info "about to send a request..should be pouring"
-    if response = Net::HTTP.post_form(uri, params)
-      Rails.logger.info "received a response!"
-      return response.code.to_i == 200
-    else
-      return false
-    end
+    Rails.logger.info "***ABOUT TO SEND REQUEST. PARAMS: "+ params.inspect + " ***"
+
+    response = Net::HTTP.post_form(uri, params)
+    Rails.logger.info "*** RECEIVED A RESPONSE. CODE: "+response.code.to_s+" ***"
+    return response.code == "200"
   end
 
 end

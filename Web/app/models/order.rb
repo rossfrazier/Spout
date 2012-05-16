@@ -14,6 +14,6 @@ class Order < ActiveRecord::Base
   end
 
   def self.next
-    Order.pending.order('updated_at DESC').first
+    Order.pending.order('updated_at').first
   end
 end
