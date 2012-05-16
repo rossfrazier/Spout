@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   def index
-  	@pending_orders = Order.pending
-    @completed_orders = Order.completed
+  	@pending_orders = Order.pending.includes(:drink,:user)
+    @completed_orders = Order.completed.limit(15).includes(:drink,:user)
   end
 
   def create

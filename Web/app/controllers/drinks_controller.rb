@@ -26,7 +26,7 @@ class DrinksController < ApplicationController
     end
     drink.save!
     flash[:success]="New drink added!"
-    redirect_to :back
+    redirect_to drinks_path
   end
 
   def edit
@@ -41,6 +41,7 @@ class DrinksController < ApplicationController
     drink = Drink.find(params[:id])
     drink.name = params[:drink][:name]
     drink.image = params[:drink][:image]
+    drink.remove_image = params[:drink][:remove_image]
     params[:drink][:pours].each do |pour_id,pour|
       if pour_id[0..2]=="new"
         if pour[:seconds].to_i > 0

@@ -24,3 +24,18 @@
 		</table>
 	</div>
 </div>
+
+<div class="row">
+	<div class="span12">
+		<ul class="thumbnails">
+			<%@drinks.each do |drink|%>
+				<li>
+					<div class="thumbnail">
+						<%=link_to image_tag(drink.image_url.to_s), drink_path(drink)%>
+						<p><h4><%=drink.name%></h4></p>
+					</div>
+				</li>
+			<%end%>
+		</ul>
+	</div>
+</div>

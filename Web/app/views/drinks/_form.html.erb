@@ -18,6 +18,14 @@
 				<%=f.file_field :image, :class=>'input-file'%>
 			</div>
 		</div>
+		<%if @drink.image?%>
+			<div class="control-group">
+				<div class="controls">
+					<%=f.check_box :remove_image%>
+					<%=f.label :remove_image, "Remove image?"%>
+				</div>
+			</div>
+		<%end%>
 		<div class="control-group">
 			<%=f.label :pours, 'Ingredients', :class=>'control-label'%>
 			<%@drink.pours.each_with_index do |pour, index|%>
