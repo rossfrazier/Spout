@@ -8,6 +8,7 @@
 static uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xC2, 0xB3 };
 
 // IP ADDRESS
+//should test whether this is really necessary
 static uint8_t ip[4] = { 192, 168, 1, 10 };
 
 /* all URLs on this server will start with "/spout" because of how we
