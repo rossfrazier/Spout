@@ -22,7 +22,6 @@ class Drink {
     
         //state getters
         byte numberOfPours();
-        bool isPouring();
         bool isComplete();
 
         //loops through collection of pour objects
@@ -40,12 +39,9 @@ class Drink {
         byte _numberOfPours;
 
         //setters and instance variables
-        void setPouring(bool isPouring);
-        bool _isPouring;
-
         //has the complete collection of pour objects finished pouring?
         void setComplete(bool complete);
-        bool _isComplete;        
+        bool _isComplete = false;        
 };
 
 #endif
