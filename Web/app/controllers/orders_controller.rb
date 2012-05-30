@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
   def index
+    @machine=Machine.first
   	@pending_orders = Order.pending.includes(:drink,:user)
     @completed_orders = Order.completed.limit(15).includes(:drink,:user)
   end
 
   def create
-  	order = current_user.orders.create(:drink_id=>params[:drink])
+  	current_user.orders.create(:drink_id=>params[:drink])
     flash[:success] = "Drink ordered."
     redirect_to orders_path
   end

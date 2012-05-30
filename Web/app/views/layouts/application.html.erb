@@ -16,10 +16,16 @@
 	<div class="navbar-inner">
 		<div class="container">
 			<a class="brand" href="#">Schpautworken gmbh</a>
-			<ul class="nav">
-				<li><a href="#">Home</a></li>
-				<li><%=link_to 'Order Queue', orders_path%></li>
-				<li><%=link_to 'Drink Library', drinks_path%></li>
+			<ul class="nav" id="main-navbar" data-active="<%=request.path_parameters[:controller]%>">
+				<li>
+					<a href="#">Home</a>
+				</li>
+				<li id="orders">
+					<%=link_to 'Order Queue', orders_path%>
+				</li>
+				<li id="drinks">
+					<%=link_to 'Drink Library', drinks_path%>
+				</li>
 			</ul>
 			<form class="navbar-search pull-left">
 				<input type="text" class="search-query" placeholder="Find a drink...">
@@ -32,7 +38,7 @@
 						<b class="caret"></b>
 					</a>
 					<ul class="dropdown-menu">
-						<li><%=link_to 'Settings', user_path(current_user.id)%></li>
+						<li><%=link_to 'Settings', user_path(current_user)%></li>
 						<li><%=link_to 'Ingredients', ingredients_path%></li>
 						<li><%=link_to 'Logout', login_users_path%></li>
 					</ul>
