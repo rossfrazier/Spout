@@ -6,21 +6,18 @@
 
 #include "Drink.h"
 
+//if valveTransistorPins[]={8,2}, then the first bottle is on transistor pin 8, and the second one is on transistor pin 2
 const byte Drink::valveTransistorPins[]={8};
 
 // this is an object constructor. it sets the object's initial state.
 Drink::Drink(Pour * pours, byte numberOfPours) {
-    setPouring(false);
-    _numberOfPours = numberOfPours;
     _allPours = pours;
+    _numberOfPours = numberOfPours;
 }
 
-bool Drink::isPouring() {
-    return _isPouring;
-}
-
-bool Drink::isPouringComplete() {
-    return _isPouringComplete;
+//state getters
+bool Drink::isComplete() {
+    return _isComplete;
 }
 
 byte Drink::numberOfPours() {
@@ -30,38 +27,13 @@ byte Drink::numberOfPours() {
 //loops through all pour instructions
 void Drink::beginPouring() {
     for (byte i = 0; i < numberOfPours(); i++) {
-        doPour(_allPours[i]);
+        _allPours[i].doPour();
     }
-    setPouringComplete(true);
-}
-
-//instructions for an individual pour. this is where opening/closing valves go.
-void Drink::doPour(Pour pour) {
-    //opening and closing valve using pour.bottle(), and pour.seconds() or pour.milliseconds()
-    controlValve(true,pour.bottle());
-    Serial.println(pour.seconds());
-    Serial.println(pour.milliseconds());
-    delay(pour.milliseconds());
-    controlValve(false,pour.bottle());
-}
-
-void Drink::controlValve(bool shouldValveOpen, byte bottleNumber) {
-    setPouring(shouldValveOpen);
-    if (shouldValveOpen) {
-        Serial.println("valve is open!");
-        digitalWrite(valveTransistorPins[bottleNumber], HIGH);
-    }
-    else {
-        Serial.println("valve is closed!");
-        digitalWrite(valveTransistorPins[bottleNumber], LOW);
-    }
+    setComplete(true);
 }
 
 //private methods (can't be called from outside this file)
-void Drink::setPouring(bool isPouring) {
-    _isPouring = isPouring;
-}
-
-void Drink::setPouringComplete(bool complete) {
-    _isPouringComplete = complete;
+//state setters
+void Drink::setComplete(bool complete) {
+    _isComplete = complete;
 }
