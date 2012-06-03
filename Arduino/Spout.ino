@@ -1,3 +1,16 @@
+// Arduino initialization code
+
+/* Commands: (all are POST)
+ * http://x.x.x.x/spout 
+ * [{key:"b2", value: 5}, {key:"p1", value: 2}]
+ * Pour a drink with two ingredients.  The first ingredient is from bottle #2,
+ * pouring for 5 seconds. The second ingredient is from bottle #1, pouring for 2
+ * seconds. 
+ * 
+ * http://x.x.x.x/spout/test
+ * [{key:"p", value: 5}, {key:"c", value: 2}]
+ * Run the pump for 5 seconds, and run the conveyer motor for 2 seconds. */
+
 #include "SPI.h"
 #include "Ethernet.h"
 #include "WebServer.h"
@@ -44,9 +57,9 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
             /* p as the first character in the POST request name signifies a pour
              * the second character in the name is the bottle number
              * the value is the pouring time (in seconds).
-             * example: name=p2, value=3 is first pour, from bottle 2, for 3 sec. */
+             * example: name=b2, value=3 is first pour, from bottle 2, for 3 sec. */
             
-            if (strncmp(name, "p", 1) == 0) {
+            if (strncmp(name, "b", 1) == 0) {
                 byte bottle = name[1]-'0';
                 int secondsPouring = strtoul(value, NULL, 10);
                 allPours[poursCount].setBottleAndSeconds(bottle, secondsPouring);
