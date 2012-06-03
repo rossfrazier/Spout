@@ -17,32 +17,31 @@
 
 class Drink {
     public:
+        //constructor
         Drink(Pour * pours, byte numberOfPours);
     
-        bool isPouring();
-        bool isPouringComplete();
-    
+        //state getters
         byte numberOfPours();
-    
+        bool isComplete();
+
+        //loops through collection of pour objects
         void beginPouring();
-        void doPour(Pour pour);
-        void controlValve(bool shouldValveOpen, byte bottleNumber);
 
         /* Stores digitial IO pin information for n number of valve transistors
          * example: valveTransistorPins[0] = 10
          * Static means it is compiled once but can be accessed over and over
-         * Const means it can't be modified by the program. */
-        static const byte valveTransistorPins[];
+         * Const means it can't be modified by the program. *
+         * Length needs to be declared because the setup function needs to activate the transistors */
+        static const byte valveTransistorPins[1];
         
     private:
-        void setPouring(bool isPouring);
-        bool _isPouring;
-    
-        void setPouringComplete(bool complete);
-        bool _isPouringComplete;
-        
-        byte _numberOfPours;
         Pour * _allPours;
+        byte _numberOfPours;
+
+        //setters and instance variables
+        //has the complete collection of pour objects finished pouring?
+        void setComplete(bool complete);
+        bool _isComplete = false;        
 };
 
 #endif
