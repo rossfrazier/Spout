@@ -11,6 +11,7 @@ const byte Drink::valveTransistorPins[]={8};
 
 // this is an object constructor. it sets the object's initial state.
 Drink::Drink(Pour * pours, byte numberOfPours) {
+    _isComplete = false;
     _allPours = pours;
     _numberOfPours = numberOfPours;
 }

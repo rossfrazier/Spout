@@ -41,7 +41,7 @@ class Drink {
         //setters and instance variables
         //has the complete collection of pour objects finished pouring?
         void setComplete(bool complete);
-        bool _isComplete = false;        
+        bool _isComplete;        
 };
 
 #endif

@@ -100,11 +100,11 @@ void testCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
                 Test::runPumpForTime(secondsRunning);
             }
             //c prefix on post param name means the user wants to run the conveyer motor
-            else if (strncmp(name, "c", 1) == 0 {
+            else if (strncmp(name, "c", 1) == 0) {
                 Test::runConveyerForTime(secondsRunning);
             }
             else {
-                httpFail();
+                server.httpFail();
                 return;
             }
         } while (hasMoreParams);
@@ -119,16 +119,21 @@ void testCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 }
 
 void setup() {
+    Serial.begin(9600);
+    Serial.println("program initialized");
+  
     //setup pins as input/output; sizeOf works for counting elements because it's an array of bytes
-    pinMode(Test::pumpTransistor, OUTPUT);
+    //pinMode(Test::pumpTransistor, OUTPUT);
     for (byte i = 0; i < sizeof(Drink::valveTransistorPins); i++) {
         pinMode(Drink::valveTransistorPins[i], OUTPUT);
     }
+    
+    Serial.println("pin mode selection complete");
 
     //initialize the ethernet shield 
     Ethernet.begin(mac);
-    Serial.begin(9600);
-    Serial.println("program initialized");
+    
+    Serial.println("still here!");
     
     //web routes
     /* register our webserver default command (activated with the request of

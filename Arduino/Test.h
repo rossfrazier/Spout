@@ -18,17 +18,16 @@ class Test {
      enum motorStatus_t {
        ON,
        OFF
-     }
+     };
      static void controlPump(motorStatus_t pumpStatus);
      static void runPumpForTime(int seconds);
 
      static void controlConveyer(motorStatus_t motorStatus);
      static void runConveyerForTime(int seconds);
 
-   private:
-      //transistor pins for motors and pumps
-      static const byte pumpTransistor = 1;
-      static const byte conveyerTransistor = 2;
+     //transistor pins for motors and pumps
+     static const byte pumpTransistor = 1;
+     static const byte conveyerTransistor = 2;
 };
 
 #endif

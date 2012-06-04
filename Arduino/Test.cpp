@@ -11,7 +11,7 @@ void Test::controlPump(motorStatus_t pumpStatus) {
 		digitalWrite(Test::pumpTransistor, HIGH);
 	}
 	else if (pumpStatus == OFF) {
-		digitalWrite(Test::pumpTransitor, LOW);
+		digitalWrite(Test::pumpTransistor, LOW);
 	}
 }
 
