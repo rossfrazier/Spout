@@ -66,12 +66,12 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
       Drink drink(allPours, poursCount);
       drink.beginPouring();
       if (drink.isComplete()) {
-          server.httpSuccess();
+        server.httpSuccess();
       }
       else { //validation error
-          server.httpSuccess();
-          P(failureMessage)= "Fail: You probably asked for a bottle that doesn't exist.";
-          server.printP(failureMessage);
+        server.httpFail();
+        P(failureMessage)= "Fail: You probably asked for a bottle that doesn't exist.";
+        server.printP(failureMessage);
       }
       //deallocate memory for objects
       delete[] allPours;
@@ -97,22 +97,22 @@ void testCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
       int secondsRunning = strtoul(value, NULL, 10);
       //p prefix on post param name means the user wants to run the pump
       if (strncmp(name, "p", 1) == 0) {
-          machine.runPumpForTime(secondsRunning);
+        machine.runPumpForTime(secondsRunning);
       }
       //c prefix on post param name means the user wants to run the conveyer motor
       else if (strncmp(name, "c", 1) == 0) {
-          machine.runConveyerForTime(secondsRunning);
+        machine.runConveyerForTime(secondsRunning);
       }
       else {
-          server.httpFail();
-          return;
+        server.httpFail();
+        return;
       }
     } while (hasMoreParams);
 
     server.httpSuccess();
   }
   else {
-      server.httpFail();
+    server.httpFail();
   }
 
   return;
