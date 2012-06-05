@@ -19,6 +19,7 @@ class Drink: private Machine  {
   public:
     //constructor
     Drink(Pour * pours, byte numberOfPours);
+    ~Drink();
 
     //state getters
     byte numberOfPours();

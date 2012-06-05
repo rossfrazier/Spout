@@ -13,6 +13,10 @@ Drink::Drink(Pour * pours, byte numberOfPours) {
   _numberOfPours = numberOfPours;
 }
 
+Drink::~Drink() {
+  delete _allPours;
+}
+
 //object state
 byte Drink::numberOfPours() {
   return _numberOfPours;

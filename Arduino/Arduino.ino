@@ -75,9 +75,7 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
       }
       //deallocate memory for objects
       delete[] allPours;
-      delete drink; //not sure if this is needed -- I think drink is now allocated on the stack
       allPours = NULL;
-      drink = NULL;
     }
 
     return;
