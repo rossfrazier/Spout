@@ -22,7 +22,7 @@
 #include "Test.h"
 
 // MAC ADDRESS
-static uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xC2, 0xB3 };
+static uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xA9, 0xFE };
 
 // IP ADDRESS
 //should test whether this is really necessary
