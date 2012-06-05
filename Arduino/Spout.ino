@@ -81,13 +81,12 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
                 P(failureMessage)= "Fail: You probably asked for a bottle that doesn't exist.";
                 server.printP(failureMessage);
             }
+            //deallocate memory for objects
+            delete[] allPours;
+            delete drink;
+            allPours = NULL;
+            drink = NULL;
         }
-
-        //deallocate memory for objects
-        delete[] allPours;
-        delete drink;
-        allPours = NULL;
-        drink = NULL;
 
         return;
     }
@@ -158,3 +157,4 @@ void setup() {
 void loop() {
     // process incoming connections one at a time forever
     webserver.processConnection();
+}

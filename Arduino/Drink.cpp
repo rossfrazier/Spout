@@ -17,7 +17,7 @@ Drink::Drink(Pour * pours, byte numberOfPours) {
 //if valveTransistorPins[]={8,2}, then the first bottle is on transistor pin 8, and the second one is on transistor pin 2
 const byte Drink::valveTransistorPins[]={8};
 
-byte numberOfBottles() {
+byte Drink::numberOfBottles() {
    //sizeOf works for counting elements because it's an array of bytes
    return sizeof(Drink::valveTransistorPins);
 }
