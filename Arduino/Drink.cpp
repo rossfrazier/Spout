@@ -33,8 +33,8 @@ byte Drink::numberOfPours() {
 //loops through all pour instructions
 void Drink::beginPouring() {
     //validation (_isComplete is false by default)
-    //if (numberOfPours() > numberOfBottles()) return;
-
+    if (numberOfPours() > numberOfBottles()) return;
+    
     for (byte i = 0; i < numberOfPours(); i++) {
         _allPours[i].doPour();
     }

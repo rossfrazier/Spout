@@ -56,7 +56,7 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
              * buffers. */
             hasMoreParams = server.readPOSTparam(name, bufferSize, value, bufferSize);
             
-            /* p as the first character in the POST request name signifies a pour
+            /* b as the first character in the POST request name signifies a bottle
              * the second character in the name is the bottle number
              * the value is the pouring time (in seconds).
              * example: name=b2, value=3 is first pour, from bottle #3, for 3 sec. */

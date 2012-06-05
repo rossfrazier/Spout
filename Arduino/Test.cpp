@@ -8,12 +8,12 @@
 
 void Test::controlPump(motorStatus_t pumpStatus) {
 	if (pumpStatus == ON) {
-            Serial.println(Test::pumpTransistor);
-            Serial.println("run pump!");
-	    digitalWrite(Test::pumpTransistor, HIGH);
+    Serial.println(Test::pumpTransistor);
+    Serial.println("run pump!");
+    digitalWrite(Test::pumpTransistor, HIGH);
 	}
 	else if (pumpStatus == OFF) {
-            digitalWrite(Test::pumpTransistor, LOW);
+  	digitalWrite(Test::pumpTransistor, LOW);
 	}
 }
 
