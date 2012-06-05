@@ -13,28 +13,28 @@
 #include "Machine.h"
 
 class Pour: private Machine {
-	public:
-		//constructors
-		Pour();
-		Pour(byte bottle, int seconds);
+  public:
+    //constructors
+    Pour();
+    Pour(byte bottle, int seconds);
 
-		//pouring action
-		bool doPour();
-		
-		//state setters
-		void setBottle(byte bottle);
-		void setSeconds(int seconds);
-		void setBottleAndSeconds(byte bottle, int seconds);
-		
-		//state getters
-		byte bottle();
-		int seconds();
-		int milliseconds();
-	
-	private:
-		//instance variables
-		byte _bottle;
-		int _seconds;
+    //pouring action
+    bool doPour();
+    
+    //state setters
+    void setBottle(byte bottle);
+    void setSeconds(int seconds);
+    void setBottleAndSeconds(byte bottle, int seconds);
+    
+    //state getters
+    byte bottle();
+    int seconds();
+    int milliseconds();
+  
+  private:
+    //instance variables
+    byte _bottle;
+    int _seconds;
 };
 
 #endif

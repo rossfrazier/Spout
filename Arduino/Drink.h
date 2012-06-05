@@ -16,26 +16,26 @@
 #include "Pour.h"
 
 class Drink: private Machine  {
-	public:
-		//constructor
-		Drink(Pour * pours, byte numberOfPours);
+  public:
+    //constructor
+    Drink(Pour * pours, byte numberOfPours);
 
-		//state getters
-		byte numberOfPours();
-		bool isComplete();
+    //state getters
+    byte numberOfPours();
+    bool isComplete();
 
-		//loops through collection of pour objects
-		void beginPouring();
-			
-	private:
-		Pour * _allPours;
-		byte _numberOfPours;
+    //loops through collection of pour objects
+    void beginPouring();
+      
+  private:
+    Pour * _allPours;
+    byte _numberOfPours;
 
-		//setters and instance variables
-		//has the complete collection of pour objects finished pouring?
-		//this would remain false due to a validation error, for example
-		void setComplete(bool complete);
-		bool _isComplete;        
+    //setters and instance variables
+    //has the complete collection of pour objects finished pouring?
+    //this would remain false due to a validation error, for example
+    void setComplete(bool complete);
+    bool _isComplete;        
 };
 
 #endif

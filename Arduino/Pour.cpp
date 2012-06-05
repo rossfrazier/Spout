@@ -9,48 +9,48 @@
 
 //constructors and setters
 Pour::Pour() {
-	return;
+  return;
 }
 
 Pour::Pour(byte bottle, int seconds) {
-	setBottleAndSeconds(bottle, seconds);
+  setBottleAndSeconds(bottle, seconds);
 }
 
 //pouring action - open and closes valves after some amount of time
 bool Pour::doPour() {
-	if (bottle() && seconds()) {
-		//run the conveyor belt
-		controlValve(OPEN, bottle());
-		delay(milliseconds());
-		controlValve(CLOSE, bottle());
-		return true;
-	}
-	return false;
+  if (bottle() && seconds()) {
+    //run the conveyor belt
+    controlValve(OPEN, bottle());
+    delay(milliseconds());
+    controlValve(CLOSE, bottle());
+    return true;
+  }
+  return false;
 }
 
 //state getters
 byte Pour::bottle() {
-	return _bottle;
+  return _bottle;
 }
 
 int Pour::seconds() {
-	return _seconds;
+  return _seconds;
 }
 
 int Pour::milliseconds() {
-	return _seconds*1000;
+  return _seconds*1000;
 }
 
 //state setters
 void Pour::setBottleAndSeconds(byte bottle, int seconds) {
-	_bottle = bottle;
-	_seconds = seconds;
+  _bottle = bottle;
+  _seconds = seconds;
 }
 
 void Pour::setBottle(byte bottle) {
-	_bottle = bottle;
+  _bottle = bottle;
 }
 
 void Pour::setSeconds(int seconds) {
-	_seconds = seconds;
+  _seconds = seconds;
 }
