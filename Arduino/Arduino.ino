@@ -22,7 +22,7 @@
 #include "Test.h"
 
 // MAC ADDRESS
-static uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xC2, 0xB3 };
+static uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xA9, 0xFE };
 
 // IP ADDRESS
 //should test whether this is really necessary
@@ -33,8 +33,7 @@ static uint8_t ip[4] = { 192, 168, 1, 10 };
 #define PREFIX "/spout"
 WebServer webserver(PREFIX, 80);  //second param is port value
 
-#define MAX_INGREDIENTS 8
-#define BUFFER_SIZE 4
+#define BUFFER_SIZE 2
 
 //default command: takes an array of drink ingredients
 void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
@@ -46,7 +45,7 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
         /* potentially a problem: this is a dynamic array of arbitrary size.
          * it won't be completely filled, but the poursCount should keep the
          * system from accessing things that are actually out of bounds */
-        Pour * allPours = new Pour [MAX_INGREDIENTS];
+        Pour * allPours = new Pour [Drink::numberOfBottles()];
         
         //buffers originally lengths of 16, but 8 should be more than fine.
         char name[bufferSize], value[bufferSize];
