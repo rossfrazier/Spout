@@ -12,37 +12,30 @@
 #ifndef Spout_Drink_h
 #define Spout_Drink_h
 
-#include "SPI.h"
+#include "Machine.h"
 #include "Pour.h"
 
-class Drink {
-    public:
-        //constructor
-        Drink(Pour * pours, byte numberOfPours);
-    
-        //state getters
-        byte numberOfPours();
-        bool isComplete();
+class Drink: private Machine  {
+	public:
+		//constructor
+		Drink(Pour * pours, byte numberOfPours);
 
-        //loops through collection of pour objects
-        void beginPouring();
+		//state getters
+		byte numberOfPours();
+		bool isComplete();
 
-        /* Stores digitial IO pin information for n number of valve transistors
-         * example: valveTransistorPins[0] = 10
-         * Static means it is compiled once but can be accessed over and over
-         * Const means it can't be modified by the program. *
-         * Length needs to be declared because the setup function needs to activate the transistors */
-        static const byte valveTransistorPins[1];
-        static byte numberOfBottles();
-        
-    private:
-        Pour * _allPours;
-        byte _numberOfPours;
+		//loops through collection of pour objects
+		void beginPouring();
+			
+	private:
+		Pour * _allPours;
+		byte _numberOfPours;
 
-        //setters and instance variables
-        //has the complete collection of pour objects finished pouring?
-        void setComplete(bool complete);
-        bool _isComplete;        
+		//setters and instance variables
+		//has the complete collection of pour objects finished pouring?
+		//this would remain false due to a validation error, for example
+		void setComplete(bool complete);
+		bool _isComplete;        
 };
 
 #endif

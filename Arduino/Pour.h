@@ -10,37 +10,31 @@
 #ifndef Spout_Pour_h
 #define Spout_Pour_h
 
-#include "SPI.h"
+#include "Machine.h"
 
-class Pour {
-    public:
-        //constructors
-        Pour();
-        Pour(byte bottle, int seconds);
+class Pour: private Machine {
+	public:
+		//constructors
+		Pour();
+		Pour(byte bottle, int seconds);
 
-        //pouring action
-        void doPour();
-        
-        //state setters
-        void setBottle(byte bottle);
-        void setSeconds(int seconds);
-        void setBottleAndSeconds(byte bottle, int seconds);
-        
-        //state getters
-        byte bottle();
-        int seconds();
-        int milliseconds();
-    
-    private:
-        enum valveStatus_t {
-            OPEN,
-            CLOSE
-        };
-        static void controlValve(valveStatus_t valveStatus, byte bottleNumber);
-
-        //instance variables
-        byte _bottle;
-        int _seconds;
+		//pouring action
+		bool doPour();
+		
+		//state setters
+		void setBottle(byte bottle);
+		void setSeconds(int seconds);
+		void setBottleAndSeconds(byte bottle, int seconds);
+		
+		//state getters
+		byte bottle();
+		int seconds();
+		int milliseconds();
+	
+	private:
+		//instance variables
+		byte _bottle;
+		int _seconds;
 };
 
 #endif
