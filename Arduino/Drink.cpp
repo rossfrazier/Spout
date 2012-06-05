@@ -6,9 +6,6 @@
 
 #include "Drink.h"
 
-//if valveTransistorPins[]={8,2}, then the first bottle is on transistor pin 8, and the second one is on transistor pin 2
-const byte Drink::valveTransistorPins[]={8};
-
 // this is an object constructor. it sets the object's initial state.
 Drink::Drink(Pour * pours, byte numberOfPours) {
     _isComplete = false;
@@ -16,7 +13,15 @@ Drink::Drink(Pour * pours, byte numberOfPours) {
     _numberOfPours = numberOfPours;
 }
 
-//state getters
+//object state
+//if valveTransistorPins[]={8,2}, then the first bottle is on transistor pin 8, and the second one is on transistor pin 2
+const byte Drink::valveTransistorPins[]={8};
+
+byte Drink::numberOfBottles() {
+   //sizeOf works for counting elements because it's an array of bytes
+   return sizeof(Drink::valveTransistorPins);
+}
+
 bool Drink::isComplete() {
     return _isComplete;
 }
@@ -27,6 +32,9 @@ byte Drink::numberOfPours() {
 
 //loops through all pour instructions
 void Drink::beginPouring() {
+    //validation (_isComplete is false by default)
+    if (numberOfPours() > numberOfBottles()) return;
+
     for (byte i = 0; i < numberOfPours(); i++) {
         _allPours[i].doPour();
     }

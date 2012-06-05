@@ -11,6 +11,9 @@
  * [{key:"p", value: 5}, {key:"c", value: 2}]
  * Run the pump for 5 seconds, and run the conveyer motor for 2 seconds. */
 
+//send null file for favicon in responses
+#define WEBDUINO_FAVICON_DATA ""
+
 #include "SPI.h"
 #include "Ethernet.h"
 #include "WebServer.h"
@@ -70,16 +73,21 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
         if (poursCount > 0) {
             Drink * drink = new Drink(allPours, poursCount);
             drink -> beginPouring();
-            if (drink -> isComplete()) {                
-                //deallocate memory for objects
-                delete[] allPours;
-                delete drink;
-                allPours = NULL;
-                drink = NULL;
-
+            if (drink -> isComplete()) {
                 server.httpSuccess();
             }
+            else { //validation error
+                server.httpSuccess();
+                P(failureMessage)= "Fail: You probably asked for a bottle that doesn't exist.";
+                server.printP(failureMessage);
+            }
+            //deallocate memory for objects
+            delete[] allPours;
+            delete drink;
+            allPours = NULL;
+            drink = NULL;
         }
+
         return;
     }
 }
@@ -122,9 +130,9 @@ void setup() {
     Serial.begin(9600);
     Serial.println("program initialized");
   
-    //setup pins as input/output; sizeOf works for counting elements because it's an array of bytes
+    //setup pins as input/output; 
     //pinMode(Test::pumpTransistor, OUTPUT);
-    for (byte i = 0; i < sizeof(Drink::valveTransistorPins); i++) {
+    for (byte i = 0; i < Drink::numberOfBottles(); i++) {
         pinMode(Drink::valveTransistorPins[i], OUTPUT);
     }
     

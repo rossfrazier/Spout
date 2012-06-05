@@ -33,6 +33,7 @@ class Drink {
          * Const means it can't be modified by the program. *
          * Length needs to be declared because the setup function needs to activate the transistors */
         static const byte valveTransistorPins[1];
+        static byte numberOfBottles();
         
     private:
         Pour * _allPours;
