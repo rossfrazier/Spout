@@ -26,7 +26,7 @@ class Test {
      static void runConveyerForTime(int seconds);
 
      //transistor pins for motors and pumps
-     static const byte pumpTransistor = 1;
+     static const byte pumpTransistor = 7;
      static const byte conveyerTransistor = 2;
 };
 

@@ -15,7 +15,7 @@ Drink::Drink(Pour * pours, byte numberOfPours) {
 
 //object state
 //if valveTransistorPins[]={8,2}, then the first bottle is on transistor pin 8, and the second one is on transistor pin 2
-const byte Drink::valveTransistorPins[]={8};
+const byte Drink::valveTransistorPins[]={6};
 
 byte Drink::numberOfBottles() {
    //sizeOf works for counting elements because it's an array of bytes
@@ -33,7 +33,7 @@ byte Drink::numberOfPours() {
 //loops through all pour instructions
 void Drink::beginPouring() {
     //validation (_isComplete is false by default)
-    if (numberOfPours() > numberOfBottles()) return;
+    //if (numberOfPours() > numberOfBottles()) return;
 
     for (byte i = 0; i < numberOfPours(); i++) {
         _allPours[i].doPour();
