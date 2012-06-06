@@ -125,7 +125,7 @@ void setup() {
   Machine::setPins();
 
   //initialize the ethernet shield with mac address
-  static const uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xA9, 0xFE };
+  static uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xA9, 0xFE };
   Ethernet.begin(mac);
   Serial.println("ethernet active");
   

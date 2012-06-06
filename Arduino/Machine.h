@@ -10,6 +10,8 @@
 #ifndef Spout_Machine_h
 #define Spout_Machine_h
 
+#include "SPI.h"
+
 class Machine {
   public:
     //constructors
@@ -17,6 +19,7 @@ class Machine {
 
     //PIN SETUP, DATA, AND HELPER METHODS
     static void setPins();
+    static byte bottleCount(); //length of valveTransistorPin array
 
     //these are only needed as public for testing
     void runPumpForTime(int seconds);
@@ -27,11 +30,9 @@ class Machine {
     * example: valveTransistorPins[0] = 10
     * Static means it is compiled once but can be accessed over and over
     * Const means it can't be modified by the program. */
-    static const byte valveTransistorPins[]={6};
+    static const byte valveTransistorPins[];
     static const byte pumpTransistor = 7;
     static const byte conveyerTransistor = 2;
-
-    static byte bottleCount(); //length of valveTransistorPin array
 
     // MACHINE OPERATION
     // valve operation

@@ -6,10 +6,15 @@
 
 #include "Machine.h"
 
+Machine::Machine() {
+}
+
+const byte Machine::valveTransistorPins[]={6};
+
 void Machine::setPins() {
   //setup pins as input/output; 
   pinMode(pumpTransistor, OUTPUT);
-  for (byte i = 0; i < numberOfBottles(); i++) {
+  for (byte i = 0; i < bottleCount(); i++) {
     pinMode(valveTransistorPins[i], OUTPUT);
   }
   Serial.println("pin mode selection complete");
