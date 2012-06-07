@@ -13,6 +13,7 @@ Drink::Drink(Pour * pours, byte numberOfPours) {
   _numberOfPours = numberOfPours;
 }
 
+//destructor-- actually not sure if this is deallocing the same object array twice
 Drink::~Drink() {
   delete _allPours;
 }

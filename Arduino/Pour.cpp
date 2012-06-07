@@ -18,7 +18,7 @@ Pour::Pour(byte bottle, int seconds) {
 
 //pouring action - open and closes valves after some amount of time
 bool Pour::doPour() {
-  if (bottle() && seconds()) {
+  if (bottle()>=0 && seconds()) {
     //run the conveyor belt
     controlValve(OPEN, bottle());
     delay(milliseconds());

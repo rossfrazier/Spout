@@ -40,7 +40,6 @@ void Machine::controlValve(valveStatus_t valveStatus, byte bottleNumber) {
 
 void Machine::controlPump(motorStatus_t pumpStatus) {
   if (pumpStatus == ON) {
-    Serial.println(pumpTransistor);
     Serial.println("pump is on!");
     digitalWrite(pumpTransistor, HIGH);
   }
@@ -50,9 +49,9 @@ void Machine::controlPump(motorStatus_t pumpStatus) {
   }
 }
 
-void Machine::runPumpForTime(int seconds) {
+void Machine::runPumpForTime(int milliseconds) {
   controlPump(ON);
-  delay(seconds*1000);
+  delay(milliseconds);
   controlPump(OFF);
 }
 
@@ -65,8 +64,8 @@ void Machine::controlConveyer(motorStatus_t motorStatus) {
   }
 }
 
-void Machine::runConveyerForTime(int seconds) {
+void Machine::runConveyerForTime(int milliseconds) {
   controlConveyer(ON);
-  delay(seconds*1000);
+  delay(milliseconds);
   controlConveyer(OFF);
 }

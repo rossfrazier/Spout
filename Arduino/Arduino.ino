@@ -26,7 +26,7 @@
 #define PREFIX "/spout"
 WebServer webserver(PREFIX, 80);  //second param is port value
 
-#define BUFFER_SIZE 4
+#define BUFFER_SIZE 8
 
 //default command: takes an array of drink ingredients
 void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
@@ -94,18 +94,15 @@ void testCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 
     do {
       hasMoreParams = server.readPOSTparam(name, bufferSize, value, bufferSize);
-      int secondsRunning = strtoul(value, NULL, 10);
+      int millisecondsRunning = atoi(value);
+
       //p prefix on post param name means the user wants to run the pump
       if (strncmp(name, "p", 1) == 0) {
-        machine.runPumpForTime(secondsRunning);
+        machine.runPumpForTime(millisecondsRunning);
       }
       //c prefix on post param name means the user wants to run the conveyer motor
       else if (strncmp(name, "c", 1) == 0) {
-        machine.runConveyerForTime(secondsRunning);
-      }
-      else {
-        server.httpFail();
-        return;
+        machine.runConveyerForTime(millisecondsRunning);
       }
     } while (hasMoreParams);
 
@@ -128,6 +125,14 @@ void setup() {
   static uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xA9, 0xFE };
   Ethernet.begin(mac);
   Serial.println("ethernet active");
+  // print your local IP address:
+  Serial.print("My IP address: ");
+  for (byte thisByte = 0; thisByte < 4; thisByte++) {
+    // print the value of each byte of the IP address:
+    Serial.print(Ethernet.localIP()[thisByte], DEC);
+    Serial.print("."); 
+  }
+  Serial.println();
   
   //web routes
   /* register our webserver default command (activated with the request of
