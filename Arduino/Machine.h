@@ -31,8 +31,8 @@ class Machine {
     * Static means it is compiled once but can be accessed over and over
     * Const means it can't be modified by the program. */
     static const byte valveTransistorPins[];
-    static const byte pumpTransistor = 7;
-    static const byte conveyerTransistor = 2;
+    static const byte pumpTransistor;
+    static const byte conveyerTransistor;
 
     // MACHINE OPERATION
     // valve operation

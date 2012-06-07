@@ -10,6 +10,8 @@ Machine::Machine() {
 }
 
 const byte Machine::valveTransistorPins[]={6};
+const byte Machine::pumpTransistor = 7;
+const byte Machine::conveyerTransistor = 2;
 
 void Machine::setPins() {
   //setup pins as input/output; 
