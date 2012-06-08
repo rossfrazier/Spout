@@ -18,8 +18,7 @@
 class Drink: private Machine  {
   public:
     //constructor
-    Drink(Pour * pours, byte numberOfPours);
-    ~Drink();
+    Drink(Pour allPours[], byte numberOfPours);
 
     //state getters
     byte numberOfPours();
@@ -29,7 +28,6 @@ class Drink: private Machine  {
     void beginPouring();
       
   private:
-    Pour * _allPours;
     byte _numberOfPours;
 
     //setters and instance variables
