@@ -24,6 +24,9 @@ class Drink: private Machine  {
     byte numberOfPours();
     bool isComplete();
 
+    //collection of pour objects
+    Pour _allPours[];
+
     //loops through collection of pour objects
     void beginPouring();
       
@@ -34,7 +37,7 @@ class Drink: private Machine  {
     //has the complete collection of pour objects finished pouring?
     //this would remain false due to a validation error, for example
     void setComplete(bool complete);
-    bool _isComplete;        
+    bool _isComplete;     
 };
 
 #endif

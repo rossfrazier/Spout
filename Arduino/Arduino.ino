@@ -70,7 +70,7 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
       }
       else { //validation error
         server.httpFail();
-        P(failureMessage)= "Fail: You probably asked for a bottle that doesn't exist.";
+        P(failureMessage)= "Fail: Validation error.";
         server.printP(failureMessage);
       }
     }

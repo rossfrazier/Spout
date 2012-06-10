@@ -10,6 +10,9 @@
 Drink::Drink(Pour allPours[], byte numberOfPours) {
   _isComplete = false;
   _numberOfPours = numberOfPours;
+  for (byte i = 0; i < numberOfPours; i++) {
+    _allPours[i] = allPours[i];
+  }
 }
 
 //object state
@@ -28,7 +31,7 @@ void Drink::beginPouring() {
 
   for (byte i = 0; i < numberOfPours(); i++) {
     // if doPour returns false, end early and don't set as complete
-    if (!allPours[i].doPour()) return;
+    if (!_allPours[i].doPour()) return;
   }
   setComplete(true);
 }
