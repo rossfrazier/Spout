@@ -25,7 +25,7 @@ class Drink: private Machine  {
     bool isComplete();
 
     //collection of pour objects
-    Pour _allPours[];
+    Pour _allPours[5];
 
     //loops through collection of pour objects
     void beginPouring();
