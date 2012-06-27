@@ -35,10 +35,10 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
     bool hasMoreParams;
     byte poursCount = 0;
     
-    /* potentially a problem: this is a dynamic array of arbitrary size.
+    /* potentially a problem: this is an array of arbitrary size.
      * it won't be completely filled, but the poursCount should keep the
      * system from accessing things that are actually out of bounds */
-    Pour * allPours = new Pour [Machine::bottleCount()];
+    Pour allPours [Machine::bottleCount()];
     
     //buffers originally lengths of 16, but 4 should be more than fine.
     char name[bufferSize], value[bufferSize];
@@ -70,12 +70,9 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
       }
       else { //validation error
         server.httpFail();
-        P(failureMessage)= "Fail: You probably asked for a bottle that doesn't exist.";
+        P(failureMessage)= "Fail: Validation error.";
         server.printP(failureMessage);
       }
-      //deallocate memory for objects
-      delete[] allPours;
-      allPours = NULL;
     }
 
     return;
