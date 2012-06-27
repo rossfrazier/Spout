@@ -50,7 +50,7 @@ module Chomper
     uri = URI.parse('http://'+@@machine_ip+'/spout')
     Rails.logger.info "***SENDING TO: "+uri.to_s+" ***"
     params = Hash.new
-    self.pours.each { |pour| params['p'+pour.bottle.to_s] = pour.seconds }
+    self.pours.each { |pour| params['b'+pour.bottle.to_s] = pour.seconds }
     Rails.logger.info "***ABOUT TO SEND REQUEST. PARAMS: "+ params.inspect + " ***"
 
     response = Net::HTTP.post_form(uri, params)

@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  #an order is a drink, ordered by a user, and placed in the queue.
+
   require 'chomper'
   include Chomper
 
