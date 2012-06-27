@@ -18,25 +18,26 @@
 class Drink: private Machine  {
   public:
     //constructor
-    Drink(Pour * pours, byte numberOfPours);
-    ~Drink();
+    Drink(Pour allPours[], byte numberOfPours);
 
     //state getters
     byte numberOfPours();
     bool isComplete();
 
+    //collection of pour objects
+    Pour _allPours[5];
+
     //loops through collection of pour objects
     void beginPouring();
       
   private:
-    Pour * _allPours;
     byte _numberOfPours;
 
     //setters and instance variables
     //has the complete collection of pour objects finished pouring?
     //this would remain false due to a validation error, for example
     void setComplete(bool complete);
-    bool _isComplete;        
+    bool _isComplete;     
 };
 
 #endif
