@@ -7,12 +7,13 @@
 #include "Drink.h"
 
 // this is an object constructor. it sets the object's initial state.
-Drink::Drink(Pour allPours[], byte numberOfPours) {
+Drink::Drink(Pour * allPours, byte numberOfPours) {
   _isComplete = false;
   _numberOfPours = numberOfPours;
-  for (byte i = 0; i < numberOfPours; i++) {
-    _allPours[i] = allPours[i];
-  }
+  _allPours = allPours;
+  //for (byte i = 0; i < numberOfPours; i++) {
+  //  _allPours[i] = allPours[i];
+  //}
 }
 
 //object state

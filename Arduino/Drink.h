@@ -18,14 +18,14 @@
 class Drink: private Machine {
   public:
     //constructor
-    Drink(Pour allPours[], byte numberOfPours);
+    Drink(Pour * allPours, byte numberOfPours);
 
     //state getters
     byte numberOfPours();
     bool isComplete();
 
     //collection of pour objects
-    Pour _allPours[5];
+    Pour * _allPours;
 
     //loops through collection of pour objects
     void beginPouring();
