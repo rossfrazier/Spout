@@ -15,7 +15,7 @@
 #include "Machine.h"
 #include "Pour.h"
 
-class Drink: private Machine  {
+class Drink: private Machine {
   public:
     //constructor
     Drink(Pour allPours[], byte numberOfPours);
