@@ -10,20 +10,29 @@ module Chomper
   require 'net/http'
   require 'open-uri'
 
+  @queue = Queue.new
+
+  def self.add(order)
+    @queue << order
+  end
+
   def self.start
     @thread = Thread.new do
       puts '** IN A NEW THREAD **'
-      redis = Redis.new
-      redis.subscribe(:ignition) do |on|
-        on.subscribe do |channel, subscriptions|
-          puts '** Waiting for ignition message **'
-        end
-
-        on.message do |channel,message|
-          puts '** Ignition message received **'
-          self.chomp
-        end
+      while order = @queue.pop
+        puts '** POPPED OBJECT:'+order.inspect
       end
+      #redis = Redis.new
+      #redis.subscribe(:ignition) do |on|
+      #  on.subscribe do |channel, subscriptions|
+      #    puts '** Waiting for ignition message **'
+      #  end
+
+      #  on.message do |channel,message|
+      #    puts '** Ignition message received **'
+      #    self.chomp
+      #  end
+      #end
     end
   end
 
