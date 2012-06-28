@@ -9,41 +9,52 @@ The chomper is designed to run on another thread to keep other requests from blo
 module Chomper
   require 'net/http'
   require 'open-uri'
-  
+
+  @queue = Queue.new
+
+  def self.add(order)
+    @queue << order
+  end
+
   def self.start
-    Rails.logger.info "***CHOMPING...***"
-    machine = Machine.first
-    @@machine_ip = machine.ip_address
-    return false if machine.chomping
-    Rails.logger.info "***MACHINE NOT CHOMPING. FORKING A NEW THREAD***"
-
-    thread = Thread.new do
-      Rails.logger.info "***IN A NEW THREAD...***"
-      machine.update_attributes(:chomping=>true)
-
-      while order = Order.next do
-        Rails.logger.info "*** "+order.inspect+" ***"
-        Rails.logger.info "***IN A NEW LOOP...***"
-        order.update_attributes(:processing=>true)
-        if order.request_sent?
-          Rails.logger.info "***REQUEST CAME BACK SUCCESSFULLY***"
-          order.update_attributes(:completed=>true, :processing=>false)
-          #these queries seem to crash the db sometimes
-          #Machine.increment_counter(:drinks_count, machine.id)
-          #Drink.increment_counter(:served_count, order.drink_id)
-        else
-          throw '***CHOMPER OR ARDUINO FAILURE***'
-        end
+    @thread = Thread.new do
+      puts '** IN A NEW THREAD **'
+      while order = @queue.pop
+        puts '** POPPED OBJECT:'+order.inspect
       end
+      #redis = Redis.new
+      #redis.subscribe(:ignition) do |on|
+      #  on.subscribe do |channel, subscriptions|
+      #    puts '** Waiting for ignition message **'
+      #  end
 
-      machine.update_attributes(:chomping=>false)
-      Rails.logger.info "***ABOUT TO KILL THREAD ***"
-      thread.kill
+      #  on.message do |channel,message|
+      #    puts '** Ignition message received **'
+      #    self.chomp
+      #  end
+      #end
     end
   end
 
-  def request_sent?
-    return self.send_request
+  def self.stop
+    @thread.join
+  end
+
+  def self.status
+    Rails.logger.info @thread.inspect
+  end
+
+  def self.chomp
+    while order = $redis.lpop("orders")
+      order = JSON.parse(order)
+      order = Order.find(order['id'])
+      self.pour(order)
+      puts "** CHOMPED AN ORDER **"
+    end
+  end
+
+  def self.pour(order)
+    puts '*** POURING!!! ***'
   end
 
   def send_request
