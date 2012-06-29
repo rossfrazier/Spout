@@ -16,10 +16,4 @@ class Order < ActiveRecord::Base
     Order.pending.order('updated_at').first
   end
 
-  def send_to_chomper
-    $redis.multi do
-      $redis.rpush("orders",self.to_json)
-      $redis.publish("ignition", 1)
-    end
-  end
 end

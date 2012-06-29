@@ -30,9 +30,7 @@ ActiveRecord::Schema.define(:version => 20120421160026) do
   end
 
   create_table "machines", :force => true do |t|
-    t.boolean  "active"
     t.integer  "drinks_count"
-    t.boolean  "chomping",     :default => false
     t.string   "ip_address"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -41,8 +39,7 @@ ActiveRecord::Schema.define(:version => 20120421160026) do
   create_table "orders", :force => true do |t|
     t.integer  "drink_id"
     t.integer  "user_id"
-    t.boolean  "completed",  :default => false
-    t.boolean  "processing", :default => false
+    t.integer  "status",  :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
