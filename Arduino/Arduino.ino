@@ -101,11 +101,9 @@ void testCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
       else if (strncmp(name, "c", 1) == 0) {
         machine.runConveyerForTime(millisecondsRunning);
       }
-      else if (strncmp(name, "b", 1) == 0) {
+      else if (strncmp(name, "b", 1) == 0) { //this is just for testing and should be temporary.
         byte bottle = name[1] - 0;
-        machine.controlValve(OPEN,bottle);
-        delay(millisecondsRunning);
-        machine.controlValve(CLOSE,bottle);
+        machine.openValveForTime(bottle,millisecondsRunning);
       }
     } while (hasMoreParams);
 
@@ -119,12 +117,14 @@ void testCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 }
 
 void setup() {
+  //SERIAL SETUP
   Serial.begin(9600);
   Serial.println("program initialized");
   
+  //PIN SETUP
   Machine::setPins();
 
-  //initialize the ethernet shield with mac address
+  //ETHERNET SETUP
   static uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xA9, 0xFE };
   Ethernet.begin(mac);
   Serial.println("ethernet active");
@@ -137,7 +137,7 @@ void setup() {
   }
   Serial.println();
   
-  //web routes
+  //WEB ROUTES
   /* register our webserver default command (activated with the request of
    * http://x.x.x.x/spout */
   webserver.setDefaultCommand(&newDrinkCmd);

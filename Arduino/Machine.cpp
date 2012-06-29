@@ -38,6 +38,12 @@ void Machine::controlValve(valveStatus_t valveStatus, byte bottleNumber) {
   }
 }
 
+void Machine::openValveForTime(byte bottleNumber, int milliseconds) {
+  controlValve(OPEN,bottleNumber);
+  delay(milliseconds);
+  controlValve(CLOSE,bottleNumber);
+}
+
 void Machine::controlPump(motorStatus_t pumpStatus) {
   if (pumpStatus == ON) {
     Serial.println("pump is on!");

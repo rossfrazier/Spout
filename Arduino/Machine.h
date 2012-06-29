@@ -22,8 +22,9 @@ class Machine {
     static byte bottleCount(); //length of valveTransistorPin array
 
     //these are only needed as public for testing
-    void runPumpForTime(int seconds);
-    void runConveyerForTime(int seconds);
+    void runPumpForTime(int milliseconds);
+    void runConveyerForTime(int milliseconds);
+    void openValveForTime(byte bottleNumber, int milliseconds);
 
   protected:
     /* Stores digitial IO pin information
