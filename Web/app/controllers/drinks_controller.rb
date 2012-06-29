@@ -2,7 +2,7 @@ class DrinksController < ApplicationController
   before_filter :authenticate!
 
   def index
-    @drinks = Drink.limit(25).includes(:ingredients)
+    @drinks = Drink.order('name').limit(25).includes(:ingredients)
   end
 
   def show
@@ -14,7 +14,7 @@ class DrinksController < ApplicationController
     @ingredients = Ingredient.all
     @pour_ids=Array.new
 
-    Machine.bottles.times { @drink.pours.build }
+    $machine.bottle_count.times { @drink.pours.build }
   end
 
   def create
@@ -32,7 +32,7 @@ class DrinksController < ApplicationController
   def edit
     @drink = Drink.find(params[:id])
     @pour_ids = @drink.pour_ids
-    new_ingredient_fields_to_be_added = Machine.bottles - @pour_ids.length
+    new_ingredient_fields_to_be_added = $machine.bottle_count - @pour_ids.length
     new_ingredient_fields_to_be_added.times { |x| @pour_ids << "new"+x.to_s; @drink.pours.build }
     @ingredients = Ingredient.all
   end

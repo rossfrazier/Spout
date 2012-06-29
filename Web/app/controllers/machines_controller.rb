@@ -1,13 +1,25 @@
 class MachinesController < ApplicationController
-  def update
-    machine = Machine.find(params[:id])
-    machine.update_attributes(:active=>params[:machine][:active], :ip_address=>params[:machine][:ip_address])
-    machine.reset_chomper!
-    flash[:info] = "Machine status updated."
-    redirect_to :back
+  def index
+    @machine = $machine
+    if @machine.running
+      @label = "Deactivate the queue"
+      @method = :delete
+    else
+      @label = "Activate the queue"
+      @method = nil
+    end
   end
 
   def create
-  	render :nothing=>true
+    $machine.start
+    flash[:success] = "Drink order queue now active."
+    redirect_to :back
   end
+
+  def destroy
+    $machine.stop
+    flash[:error] = "Drink order queue now deactivated."
+    redirect_to :back
+  end
+
 end

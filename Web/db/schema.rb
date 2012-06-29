@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20120421160026) do
   create_table "orders", :force => true do |t|
     t.integer  "drink_id"
     t.integer  "user_id"
-    t.integer  "status",  :default => 0
+    t.boolean  "completed",  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

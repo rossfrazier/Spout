@@ -9,11 +9,20 @@ class Order < ActiveRecord::Base
   scope :completed, where(:completed=>true)
 
   after_create do |order|
-    #self.send_to_chomper
+    send_to_queue
   end
 
-  def self.next
-    Order.pending.order('updated_at').first
+  def processing
+    if $machine.queued_orders.include? self
+      return true
+    else
+      return false
+    end
   end
 
+  private
+
+  def send_to_queue
+    $machine << self
+  end
 end

@@ -5,12 +5,14 @@ class Machine
   require 'net/http'
   require 'open-uri'
 
-  attr_accessor :running, :bottle_count, :ip_address
+  attr_accessor :running, :bottle_count, :ip_address, :drink_count
 
   def initialize
-    self.bottle_count = 5
-    self.ip_address = '127.0.0.1'
+    self.bottle_count = 6
+    self.ip_address = 'localhost:3000'
     self.running = false
+    self.drink_count = 0
+    @queue = Queue.new
   end
 
   def start
@@ -33,16 +35,34 @@ class Machine
   end
 
   def <<(order)
-    @queue << order if order.class.eql? Order
+    @queue << order if order.class.eql?(Order) and order.persisted?
+  end
+
+  def queue
+    return @queue
+  end
+
+  def queued_orders
+    return self.queue.instance_variable_get :@que
+  end
+
+  def thread
+    return @thread
   end
 
   def uri
     return URI.parse('http://'+ip_address+'/spout')
   end
 
+  def active
+    return self.running
+  end
+
   private
   def pour(order)
     if web_request_successful?(order)
+      self.drink_count += 1
+      order.update_attributes(:completed=>true)
       Drink.increment_counter(:served_count, order.drink_id)
     end
   end

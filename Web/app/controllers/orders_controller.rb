@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   def index
-    @machine=Machine.first
-  	@pending_orders = Order.pending.includes(:drink,:user)
+    @machine=$machine
+    @pending_orders = @machine.queued_orders
+  	#@pending_orders = Order.pending.includes(:drink,:user)
     @completed_orders = Order.completed.limit(15).includes(:drink,:user)
   end
 
@@ -23,6 +24,10 @@ class OrdersController < ApplicationController
     order.destroy
     flash[:info] = "Order cancelled."
     redirect_to orders_path
+  end
+
+  def test
+    render :nothing=>true
   end
 
 end

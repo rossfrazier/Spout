@@ -44,7 +44,7 @@
 				<div class="control-group">
 					<%=f.label :bottle, "Bottle", :class=>'control-label'%>
 					<div class="controls">
-						<%bottle_range = 1..Machine.bottles%>
+						<%bottle_range = 1..@machine.bottle_count%>
 						<%=f.select :bottle, options_for_select(bottle_range.to_a, @ingredient.bottle), {:include_blank=>true}, :class=>"span1"%>
 					</div>
 				</div>

@@ -1,6 +1,7 @@
 <%unless @machine.active%>
 	<h3>Spout machine is not active</h3></br>
 <%end%>
+<h3><%=@machine.thread.inspect%></h3>
 
 <legend>Pending Orders</legend>
 <%=render :partial=>'orders_table', :locals=>{:orders=>@pending_orders}%>

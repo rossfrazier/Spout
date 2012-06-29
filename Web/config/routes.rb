@@ -9,8 +9,11 @@ Web::Application.routes.draw do
     end
   end
 
-  resources :machines, :only=>[:update, :create]
+  post 'machines' => 'machines#create'
+  delete 'machines' => 'machines#destroy'
+  get 'machines' => 'machines#index'
 
+  post 'spout' => 'orders#test'
   root :to=>'drinks#index'
 
   # The priority is based upon order of creation:

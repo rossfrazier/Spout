@@ -2,6 +2,7 @@ class IngredientsController < ApplicationController
   def index
     @ingredients = Ingredient.all
     @ingredient = Ingredient.new
+    @machine = $machine
   end
 
   def create
