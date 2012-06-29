@@ -1,40 +1,48 @@
-class Machine < ActiveRecord::Base
+require 'singleton'
+
+class Machine
   include Singleton
   require 'net/http'
   require 'open-uri'
 
-  attr_accessor :pouring
+  attr_accessor :running, :bottle_count, :ip_address
 
-  def self.bottles
-    return 5
+  def initialize
+    self.bottle_count = 5
+    self.ip_address = '127.0.0.1'
+    self.running = false
   end
 
   def start
-    @queue = Queue.new
+    self.running = true
+    @queue ||= Queue.new
     @thread = Thread.new do
       while order = @queue.pop
-        self.pour(order)
+        pour(order)
       end
     end
   end
 
   def stop
+    self.running = false
+    @thread.kill
+  end
+
+  def reset
     @queue.clear
-    @thread.join
   end
 
   def <<(order)
-    @queue << order
+    @queue << order if order.class.eql? Order
   end
 
   def uri
-    return URI.parse('http://'+@@machine_ip+'/spout')
+    return URI.parse('http://'+ip_address+'/spout')
   end
 
   private
   def pour(order)
     if web_request_successful?(order)
-      Machine.increment_counter(:drinks_count, self.id)
       Drink.increment_counter(:served_count, order.drink_id)
     end
   end

@@ -24,7 +24,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @machine = Machine.first
     @users = User.all
   end
 

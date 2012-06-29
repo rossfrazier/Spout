@@ -29,13 +29,6 @@ ActiveRecord::Schema.define(:version => 20120421160026) do
     t.datetime "updated_at"
   end
 
-  create_table "machines", :force => true do |t|
-    t.integer  "drinks_count"
-    t.string   "ip_address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "orders", :force => true do |t|
     t.integer  "drink_id"
     t.integer  "user_id"
