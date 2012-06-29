@@ -11,21 +11,9 @@ Drink::Drink(Pour * allPours, byte numberOfPours) {
   _isComplete = false;
   _numberOfPours = numberOfPours;
   _allPours = allPours;
-  //for (byte i = 0; i < numberOfPours; i++) {
-  //  _allPours[i] = allPours[i];
-  //}
 }
 
-//object state
-byte Drink::numberOfPours() {
-  return _numberOfPours;
-}
-
-bool Drink::isComplete() {
-  return _isComplete;
-}
-
-//loops through all pour instructions
+//loops through all pour instructions. sets drink as complete only if successful
 void Drink::beginPouring() {
   //validation (_isComplete is false by default)
   if (numberOfPours() > bottleCount()) return;
@@ -35,6 +23,15 @@ void Drink::beginPouring() {
     if (!_allPours[i].doPour()) return;
   }
   setComplete(true);
+}
+
+//object state
+byte Drink::numberOfPours() {
+  return _numberOfPours;
+}
+
+bool Drink::isComplete() {
+  return _isComplete;
 }
 
 //private methods (can't be called from outside this file)

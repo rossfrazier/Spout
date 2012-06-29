@@ -5,7 +5,6 @@
 //  Implementation for the Pour object (detailed description in the header file).
 
 #include "Pour.h"
-#include "Drink.h"
 
 //constructors and setters
 Pour::Pour() {
@@ -17,9 +16,9 @@ Pour::Pour(byte bottle, int seconds) {
 }
 
 //pouring action - open and closes valves after some amount of time
+//returns true if successful. invoked by the drink object.
 bool Pour::doPour() {
   if (bottle()>=0 && seconds()) {
-    //run the conveyor belt
     controlValve(OPEN, bottle());
     delay(milliseconds());
     controlValve(CLOSE, bottle());

@@ -3,9 +3,10 @@
 //  Spout
 //
 //  Interface (description of the object) for the Drink object (the finished drink, which is the 
-//  sum of all its pours). Includes an array of pour information, and a variable to check whether
-//  it's in the process of pouring or not. The functions that open the valves, time their closing
-//  and move the cup or carousel will go in this section.
+//  collection of all its pours). Includes a pointer to an array of pour information, and a method
+//  that goes through each pour object and tells the machine to pour it. This is where validations
+//  go, and the drink object is what passes back to the main function whether the request was a
+//  success or a failure.
 //
 //  A Drink has many Pours.  A Pour belongs to a Drink.
 
@@ -24,10 +25,10 @@ class Drink: private Machine {
     byte numberOfPours();
     bool isComplete();
 
-    //collection of pour objects
+    //instance variable: pointer to an array of pour objects created during the request function
     Pour * _allPours;
 
-    //loops through collection of pour objects
+    //loops through collection of pour objects. sets drink as complete only if successful
     void beginPouring();
       
   private:

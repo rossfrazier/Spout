@@ -36,11 +36,11 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
     byte poursCount = 0;
     
     /* potentially a problem: this is an array of arbitrary size.
-     * it won't be completely filled, but the poursCount should keep the
+     * it may not be completely filled, but the poursCount should keep the
      * system from accessing things that are actually out of bounds */
     Pour allPours [Machine::bottleCount()];
     
-    //buffers originally lengths of 16, but 4 should be more than fine.
+    //buffers originally lengths of 16, but 8 should be more than fine.
     char name[bufferSize], value[bufferSize];
     do {
       /* readPOSTparam returns false when there are no more parameters
@@ -55,7 +55,7 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
        * example: name=b2, value=3 is first pour, from bottle #3, for 3 sec. */
       
       if (strncmp(name, "b", 1) == 0) {
-        byte bottle = name[1]-'0'; //converts ascii char to byte
+        byte bottle = name[1]-'0'; //converts ascii char (2nd character) to byte
         int secondsPouring = strtoul(value, NULL, 10);
         allPours[poursCount].setBottleAndSeconds(bottle, secondsPouring);
         poursCount++;
