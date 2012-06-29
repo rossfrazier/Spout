@@ -101,6 +101,12 @@ void testCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
       else if (strncmp(name, "c", 1) == 0) {
         machine.runConveyerForTime(millisecondsRunning);
       }
+      else if (strncmp(name, "b", 1) == 0) {
+        byte bottle = name[1] - 0;
+        machine.controlValve(OPEN,bottle);
+        delay(millisecondsRunning);
+        machine.controlValve(CLOSE,bottle);
+      }
     } while (hasMoreParams);
 
     server.httpSuccess();
