@@ -8,6 +8,5 @@ class CreateMachines < ActiveRecord::Migration
 
       t.timestamps
     end
-    Machine.create(:active=>false, :drinks_count=>0)
   end
 end
