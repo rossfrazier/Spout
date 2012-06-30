@@ -12,6 +12,7 @@ Web::Application.routes.draw do
   post 'machines' => 'machines#create'
   delete 'machines' => 'machines#destroy'
   get 'machines' => 'machines#index'
+  put 'machines' => 'machines#update'
 
   post 'spout' => 'orders#test'
   root :to=>'drinks#index'

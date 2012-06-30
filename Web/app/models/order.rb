@@ -5,8 +5,9 @@ class Order < ActiveRecord::Base
   belongs_to :drink
   has_many :pours, :through=>:drink
 
-  scope :pending, where(:completed=>false)
-  scope :completed, where(:completed=>true)
+  default_scope order('updated_at DESC')
+  scope :pending, where(:id=>$machine.pending_orders)
+  scope :completed, where(:id=>$machine.completed_orders)
 
   after_create do |order|
     send_to_queue

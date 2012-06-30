@@ -11,4 +11,9 @@ class Drink < ActiveRecord::Base
   before_save do |drink|
   	drink.name = drink.name.titleize
   end
+
+  def available?
+    return false if self.ingredients.collect{|i| i.available}.include? false
+    return true
+  end
 end

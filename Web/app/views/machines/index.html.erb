@@ -1,14 +1,13 @@
-<div class="row">
-	<div class="span12">
-		<h3>
-			<%if @machine.running%>
-				Queue is active and running
-			<%else%>
-				Queue is not active
-			<%end%>
-		</h3>
-		<h4>Drinks served: <%=@machine.drink_count.to_s%></h4>
-		<h4>Spout address: <%=@machine.uri.to_s%></h4>
-		<%=button_to @label, machines_path, :method=>@method, :class=>'btn', 'data-toggle'=>'button'%>
-	</div>
-</div>
+<%=render :partial=>'machine_status'%>
+
+<%=form_tag machines_path, :method=>:put, :class=>'form-inline' do%>
+  <fieldset>
+    <div class="control-group">
+      <%=label_tag :ip_address, 'Spout IP Address', :class=>'control-label'%>
+      <div class="controls">
+        <%=text_field_tag :ip_address, @machine.ip_address, :html=>{:class=>'input-xlarge'}%>
+      </div>
+    </div>
+    <%=submit_tag 'Update', :class=>'btn btn-primary'%>
+  </fieldset>
+<%end%>

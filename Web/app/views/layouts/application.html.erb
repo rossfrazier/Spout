@@ -17,9 +17,6 @@
 		<div class="container">
 			<a class="brand" href="#">Schpautworken gmbh</a>
 			<ul class="nav" id="main-navbar" data-active="<%=request.path_parameters[:controller]%>">
-				<li>
-					<a href="#">Home</a>
-				</li>
 				<li id="orders">
 					<%=link_to 'Order Queue', orders_path%>
 				</li>

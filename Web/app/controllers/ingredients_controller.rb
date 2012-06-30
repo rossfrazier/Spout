@@ -12,6 +12,7 @@ class IngredientsController < ApplicationController
   end
 
   def edit
+    @machine = $machine
     @ingredients = Ingredient.all
     @ingredient = Ingredient.find(params[:id])
     render 'index'
