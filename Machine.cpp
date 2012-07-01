@@ -9,7 +9,7 @@
 Machine::Machine() {
 }
 
-const byte Machine::valveTransistorPins[] = {6};
+const byte Machine::valveTransistorPins[] = {6,5,8};
 const byte Machine::pumpTransistor = 7;
 const byte Machine::conveyerTransistor = 2;
 
