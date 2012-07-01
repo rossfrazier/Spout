@@ -9,7 +9,7 @@
 Machine::Machine() {
 }
 
-const byte Machine::valveTransistorPins[]={6};
+const byte Machine::valveTransistorPins[] = {6};
 const byte Machine::pumpTransistor = 7;
 const byte Machine::conveyerTransistor = 2;
 
@@ -40,6 +40,7 @@ void Machine::controlValve(valveStatus_t valveStatus, byte bottleNumber) {
 
 void Machine::openValveForTime(byte bottleNumber, int milliseconds) {
   controlValve(OPEN,bottleNumber);
+  Serial.println(milliseconds);
   delay(milliseconds);
   controlValve(CLOSE,bottleNumber);
 }
