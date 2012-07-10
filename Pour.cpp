@@ -18,8 +18,8 @@ Pour::Pour(byte bottle, int seconds) {
 //pouring action - open and closes valves after some amount of time
 //returns true if successful. invoked by the drink object.
 bool Pour::doPour() {
-  highestPossibleBottleIndex = bottleCount()-1;
-  lowestPossibleBottleIndex = 0;
+  byte highestPossibleBottleIndex = bottleCount()-1;
+  byte lowestPossibleBottleIndex = 0;
   if (bottle()>=lowestPossibleBottleIndex && bottle()<=highestPossibleBottleIndex && seconds()) {
     controlValve(OPEN, bottle());
     delay(milliseconds());
