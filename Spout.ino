@@ -105,6 +105,10 @@ void testCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
         byte bottle = name[1] - 0;
         machine.openValveForTime(bottle,millisecondsRunning);
       }
+      else {
+        server.httpFail();
+        return;
+      }
     } while (hasMoreParams);
 
     server.httpSuccess();
