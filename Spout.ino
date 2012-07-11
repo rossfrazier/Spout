@@ -13,6 +13,7 @@
 
 //send null file for favicon in responses
 #define WEBDUINO_FAVICON_DATA ""
+#define WEBDUINO_SERIAL_DEBUGGING 1
 
 #include "SPI.h"
 #include "Ethernet.h"

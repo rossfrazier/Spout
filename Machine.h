@@ -18,7 +18,7 @@ class Machine {
     Machine();
 
     //PIN SETUP, DATA, AND HELPER METHODS
-    static void setPins();
+    static void setPins(); //set pinModes and make sure all pins start digital written to LOW
     static byte bottleCount(); //length of valveTransistorPin array
 
     //these are only needed as public for testing
