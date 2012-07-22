@@ -95,7 +95,7 @@ NEED SOMETHING WITH THIS MANY FEATURES. */
 // before including WebServer.h to have incoming requests logged to
 // the serial port.
 #ifndef WEBDUINO_SERIAL_DEBUGGING
-#define WEBDUINO_SERIAL_DEBUGGING 1
+#define WEBDUINO_SERIAL_DEBUGGING 0
 #endif
 #if WEBDUINO_SERIAL_DEBUGGING
 #include <HardwareSerial.h>

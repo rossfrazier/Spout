@@ -13,11 +13,13 @@ const byte Machine::valveTransistorPins[] = {6,5,8};
 const byte Machine::pumpTransistor = 7;
 const byte Machine::conveyerTransistor = 2;
 
+//setup pins as input/output, and make sure they start at LOW
 void Machine::setPins() {
-  //setup pins as input/output; 
   pinMode(pumpTransistor, OUTPUT);
+  digitalWrite(pumpTransistor, LOW);
   for (byte i = 0; i < bottleCount(); i++) {
     pinMode(valveTransistorPins[i], OUTPUT);
+    digitalWrite(valveTransistorPins[i], LOW);
   }
   Serial.println("pin mode selection complete");
 }

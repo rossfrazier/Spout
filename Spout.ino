@@ -13,6 +13,7 @@
 
 //send null file for favicon in responses
 #define WEBDUINO_FAVICON_DATA ""
+#define WEBDUINO_SERIAL_DEBUGGING 1
 
 #include "SPI.h"
 #include "Ethernet.h"
@@ -104,6 +105,10 @@ void testCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
       else if (strncmp(name, "b", 1) == 0) { //this is just for testing and should be temporary.
         byte bottle = name[1] - 0;
         machine.openValveForTime(bottle,millisecondsRunning);
+      }
+      else {
+        server.httpFail();
+        return;
       }
     } while (hasMoreParams);
 
