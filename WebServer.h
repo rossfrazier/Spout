@@ -1,6 +1,3 @@
-/* THIS IS A LIBRARY SOMEONE WROTE THAT MAY BE USEFUL.  MY INITIAL SENSE IS THAT WE WON'T 
-NEED SOMETHING WITH THIS MANY FEATURES. */
-
 /* Webduino, a simple Arduino web server
    Copyright 2009-2012 Ben Combee, Ran Talbott, Christopher Lee, Martin Lormes */
  
