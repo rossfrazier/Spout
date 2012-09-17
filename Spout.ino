@@ -13,7 +13,7 @@
 
 //send null file for favicon in responses
 #define WEBDUINO_FAVICON_DATA ""
-#define WEBDUINO_SERIAL_DEBUGGING 1
+#define WEBDUINO_SERIAL_DEBUGGING 2
 
 #include "SPI.h"
 #include "Ethernet.h"
@@ -27,7 +27,7 @@
 #define PREFIX "/spout"
 WebServer webserver(PREFIX, 80);  //second param is port value
 
-#define BUFFER_SIZE 8
+#define BUFFER_SIZE 32
 
 //default command: takes an array of drink ingredients
 void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
