@@ -27,7 +27,7 @@
 #define PREFIX "/spout"
 WebServer webserver(PREFIX, 80);  //second param is port value
 
-#define BUFFER_SIZE 32
+#define BUFFER_SIZE 16
 
 //default command: takes an array of drink ingredients
 void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
