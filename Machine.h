@@ -21,9 +21,7 @@ class Machine {
     static void setPins(); //set pinModes and make sure all pins start digital written to LOW
     static byte bottleCount(); //length of valveTransistorPin array
 
-    //these are only needed as public for testing
-    void runPumpForTime(int milliseconds);
-    void runConveyerForTime(int milliseconds);
+    //this is only needed as public for testing
     void openValveForTime(byte bottleNumber, int milliseconds);
 
   protected:
@@ -32,8 +30,6 @@ class Machine {
     * Static means it is compiled once but can be accessed over and over
     * Const means it can't be modified by the program. */
     static const byte valveTransistorPins[];
-    static const byte pumpTransistor;
-    static const byte conveyerTransistor;
 
     // MACHINE OPERATION
     // valve operation
@@ -42,14 +38,6 @@ class Machine {
       CLOSE
     };
     void controlValve(valveStatus_t valveStatus, byte bottleNumber);
-
-    //pump and conveyer operation
-    enum motorStatus_t {
-      ON,
-      OFF
-    };
-    void controlPump(motorStatus_t pumpStatus);
-    void controlConveyer(motorStatus_t motorStatus);  
 };
 
 #endif
