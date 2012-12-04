@@ -21,9 +21,6 @@ class Machine {
     static void setPins(); //set pinModes and make sure all pins start digital written to LOW
     static byte bottleCount(); //length of valveTransistorPin array
 
-    //this is only needed as public for testing
-    void openValveForTime(byte bottleNumber, int milliseconds);
-
   protected:
     /* Stores digitial IO pin information
     * example: valveTransistorPins[0] = 10
