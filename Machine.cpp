@@ -37,10 +37,3 @@ void Machine::controlValve(valveStatus_t valveStatus, byte bottleNumber) {
     digitalWrite(valveTransistorPins[bottleNumber], LOW);
   }
 }
-
-void Machine::openValveForTime(byte bottleNumber, int milliseconds) {
-  controlValve(OPEN,bottleNumber);
-  Serial.println(milliseconds);
-  delay(milliseconds);
-  controlValve(CLOSE,bottleNumber);
-}
