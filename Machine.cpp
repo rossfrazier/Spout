@@ -10,8 +10,6 @@ Machine::Machine() {
 }
 
 const byte Machine::valveTransistorPins[] = {3,4,5,6,8,9};
-const byte Machine::pumpTransistor = 7;
-const byte Machine::conveyerTransistor = 2;
 
 //setup pins as input/output, and make sure they start at LOW
 void Machine::setPins() {
@@ -45,36 +43,4 @@ void Machine::openValveForTime(byte bottleNumber, int milliseconds) {
   Serial.println(milliseconds);
   delay(milliseconds);
   controlValve(CLOSE,bottleNumber);
-}
-
-void Machine::controlPump(motorStatus_t pumpStatus) {
-  if (pumpStatus == ON) {
-    Serial.println("pump is on!");
-    digitalWrite(pumpTransistor, HIGH);
-  }
-  else if (pumpStatus == OFF) {
-    Serial.println("pump is off!");
-    digitalWrite(pumpTransistor, LOW);
-  }
-}
-
-void Machine::runPumpForTime(int milliseconds) {
-  controlPump(ON);
-  delay(milliseconds);
-  controlPump(OFF);
-}
-
-void Machine::controlConveyer(motorStatus_t motorStatus) {
-  if (motorStatus == ON) {
-
-  }
-  else if (motorStatus == OFF) {
-
-  }
-}
-
-void Machine::runConveyerForTime(int milliseconds) {
-  controlConveyer(ON);
-  delay(milliseconds);
-  controlConveyer(OFF);
 }
