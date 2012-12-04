@@ -80,47 +80,6 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
   }
 }
 
-//testing methods: can be used to arbitrarily control air pumps, conveyers, etc.
-//reads POST params in the same way as in the default command.
-void testCmd(WebServer &server, WebServer::ConnectionType type, char *, bool) {
-  Serial.println("test command!");
-  static const byte bufferSize = BUFFER_SIZE;
-  if (type == WebServer::POST) {
-    bool hasMoreParams;
-    char name[bufferSize], value[bufferSize];
-    Machine machine;
-
-    do {
-      hasMoreParams = server.readPOSTparam(name, bufferSize, value, bufferSize);
-      int millisecondsRunning = atoi(value);
-
-      //p prefix on post param name means the user wants to run the pump
-      if (strncmp(name, "p", 1) == 0) {
-        machine.runPumpForTime(millisecondsRunning);
-      }
-      //c prefix on post param name means the user wants to run the conveyer motor
-      else if (strncmp(name, "c", 1) == 0) {
-        machine.runConveyerForTime(millisecondsRunning);
-      }
-      else if (strncmp(name, "b", 1) == 0) { //this is just for testing and should be temporary.
-        byte bottle = name[1] - 0;
-        machine.openValveForTime(bottle,millisecondsRunning);
-      }
-      else {
-        server.httpFail();
-        return;
-      }
-    } while (hasMoreParams);
-
-    server.httpSuccess();
-  }
-  else {
-    server.httpFail();
-  }
-
-  return;
-}
-
 void setup() {
   //SERIAL SETUP
   Serial.begin(9600);
@@ -147,9 +106,7 @@ void setup() {
   /* register our webserver default command (activated with the request of
    * http://x.x.x.x/spout */
   webserver.setDefaultCommand(&newDrinkCmd);
-  //test commands use POST url of http://x.x.x.x/spout/test
-  webserver.addCommand("test",&testCmd);
-  
+
   // start the server to wait for connections
   webserver.begin();
 }
