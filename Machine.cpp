@@ -11,7 +11,7 @@ Machine::Machine() {
 
 const byte Machine::valveTransistorPins[] = {3,4,5,6,8,9};
 
-//setup pins as input/output, and make sure they start at LOW
+//setup pins as input/output, and make sure they start at LOW (valves off)
 void Machine::setPins() {
   pinMode(pumpTransistor, OUTPUT);
   digitalWrite(pumpTransistor, LOW);
