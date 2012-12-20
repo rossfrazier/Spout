@@ -17,12 +17,18 @@ Drink::Drink(Pour * allPours, byte numberOfPours) {
 void Drink::beginPouring() {
   //validation (_isComplete is false by default)
   if (numberOfPours() > bottleCount()) return;
-
-  for (byte i = 0; i < numberOfPours(); i++) {
-    // if doPour returns false, end early and don't set as complete
-    if (!_allPours[i].doPour()) return;
+  
+  if (isCupPresent()) {
+    for (byte i = 0; i < numberOfPours(); i++) {
+      // if doPour returns false, end early and don't set as complete
+      if (!_allPours[i].doPour()) return;
+    }
+    setComplete(true);
   }
-  setComplete(true);
+  else {
+    //if cup isn't there, run this method again (which loops until there's a cup)
+    beginPouring();   
+  }
 }
 
 //object state
