@@ -10,7 +10,7 @@ Machine::Machine() {
 }
 
 const byte Machine::valveTransistorPins[] = {3,4,5,6,8,9};
-const byte Machine::infraredSensorPin = 11;
+const byte Machine::infraredSensorPin = 0;
 
 //setup pins as input/output, and make sure they start at LOW (valves and sensors off)
 void Machine::setPins() {
@@ -42,7 +42,7 @@ void Machine::controlValve(valveStatus_t valveStatus, byte bottleNumber) {
 }
 
 // Sensor Methods
-const int Machine::presentCupThreshold = 700;
+const int Machine::presentCupThreshold = 100;
 const int Machine::defaultAverageReadingCount = 10;
 
 //takes as many readings are specified and returns the average
@@ -58,7 +58,11 @@ int Machine::averageReading(int readingsCount) {
 
 
 bool Machine::isCupPresent() {
-  if (averageReading(defaultAverageReadingCount) < presentCupThreshold) {
+  int latestAverageReading = averageReading(defaultAverageReadingCount);
+  Serial.print("IR reading: ");
+  Serial.print(latestAverageReading);
+  Serial.println();
+  if (latestAverageReading < presentCupThreshold) {
     return true;
   }
   return false;
