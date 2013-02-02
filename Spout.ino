@@ -27,8 +27,6 @@
 #define PREFIX "/spout"
 WebServer webserver(PREFIX, 80);  //second param is port value
 
-Machine machine;
-
 #define BUFFER_SIZE 16
 
 //default command: takes an array of drink ingredients
@@ -113,8 +111,10 @@ void setup() {
   webserver.begin();
 }
 
+//Machine machine;
+
 void loop() {
   // process incoming connections one at a time forever
   webserver.processConnection();
-  machine.isCupPresent();
+  //machine.isCupPresent();
 }
