@@ -11,6 +11,7 @@
 #define Spout_Machine_h
 
 #include "SPI.h"
+#include "IRSensor.h"
 
 class Machine {
   public:
@@ -20,7 +21,11 @@ class Machine {
     //PIN SETUP, DATA, AND HELPER METHODS
     static void setPins(); //set pinModes and make sure all pins start digital written to LOW
     static byte bottleCount(); //length of valveTransistorPin array
-    static bool isCupPresent(); //runs sensor n times and uses running avg to find if there's a cup
+    bool isCupPresent(); //runs sensor n times and uses running avg to find if there's a cup
+
+    //IR sensor
+    IRSensor irSensor;
+    void recordIR();
 
   protected:
     /* Stores digitial IO pin information
@@ -37,11 +42,6 @@ class Machine {
       CLOSE
     };
     void controlValve(valveStatus_t valveStatus, byte bottleNumber);
-
-  private:
-    static const int presentCupThreshold;
-    static const int defaultAverageReadingCount;
-    static int averageReading(int readingsCount);
 };
 
 #endif

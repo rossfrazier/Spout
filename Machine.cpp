@@ -6,7 +6,7 @@
 
 #include "Machine.h"
 
-Machine::Machine() {
+Machine::Machine() : irSensor(0,100) {
 }
 
 const byte Machine::valveTransistorPins[] = {3,4,5,6,8,9};
@@ -15,7 +15,6 @@ const byte Machine::infraredSensorPin = 0;
 //setup pins as input/output, and make sure they start at LOW (valves and sensors off)
 void Machine::setPins() {
   pinMode(infraredSensorPin, OUTPUT);
-  digitalWrite(infraredSensorPin, LOW);
 
   for (byte i = 0; i < bottleCount(); i++) {
     pinMode(valveTransistorPins[i], OUTPUT);
@@ -41,29 +40,20 @@ void Machine::controlValve(valveStatus_t valveStatus, byte bottleNumber) {
   }
 }
 
-// Sensor Methods
-const int Machine::presentCupThreshold = 100;
-const int Machine::defaultAverageReadingCount = 10;
-
-//takes as many readings are specified and returns the average
-int Machine::averageReading(int readingsCount) {
-  int i, sumOfSensorValues;
-  while (i < readingsCount) {
-    sumOfSensorValues += analogRead(infraredSensorPin);
-    i++;
-    delay(1); //delay in between reads for stability
+bool Machine::isCupPresent() {
+  if (irSensor.isCupPresent()) {
+    Serial.println("Cup is present!");
   }
-  return sumOfSensorValues / readingsCount;
+  else {
+    Serial.println("Cup is not present...");
+  }
+  return irSensor.isCupPresent();
 }
 
-
-bool Machine::isCupPresent() {
-  int latestAverageReading = averageReading(defaultAverageReadingCount);
-  Serial.print("IR reading: ");
-  Serial.print(latestAverageReading);
+void Machine::recordIR() {
+  irSensor.takeAndPushReading();
+  long avg = irSensor.rollingAverage();
+  Serial.print("machine rolling avg: ");
+  Serial.print(avg);
   Serial.println();
-  if (latestAverageReading < presentCupThreshold) {
-    return true;
-  }
-  return false;
 }
