@@ -6,7 +6,7 @@
 
 #include "Machine.h"
 
-#define IR_READINGS_COUNT 100
+#define IR_READINGS_COUNT 50
 #define IR_SENSOR_PIN 0
 
 IRSensor irSensor(IR_SENSOR_PIN,IR_READINGS_COUNT);
