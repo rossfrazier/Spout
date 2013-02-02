@@ -10,14 +10,23 @@ const int IRSensor::presentCupThreshold = 100;
 
 IRSensor::IRSensor(byte pin, int readingsCount) : Queue(readingsCount) {
   _sensorPin = pin;
+  _readingsCount = readingsCount;
 }
 
-void IRSensor::takeAndPushReading() {
-  enqueue(analogRead(_sensorPin));
-  delay(1);
+void IRSensor::takeAndPushReadings() {
+  for (int i = 0; i < _readingsCount; i++) {
+    enqueue(analogRead(_sensorPin));
+    delay(1);
+  }
 }
 
 bool IRSensor::isCupPresent() {
+  takeAndPushReadings();
+
+  Serial.print("avg: ");
+  Serial.print(rollingMean());
+  Serial.println();
+
   if (rollingMean() <= presentCupThreshold) return true;
   return false;
 }

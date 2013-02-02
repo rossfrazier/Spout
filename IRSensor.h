@@ -14,12 +14,13 @@ class IRSensor : public Queue {
   public:
     IRSensor(byte pin, int readingsCount);
 
-    void takeAndPushReading();
+    void takeAndPushReadings();
     bool isCupPresent();
 
   private:
     static const int presentCupThreshold;
     byte _sensorPin;
+    int _readingsCount;
 };
 
 #endif

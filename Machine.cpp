@@ -43,19 +43,12 @@ void Machine::controlValve(valveStatus_t valveStatus, byte bottleNumber) {
 }
 
 bool Machine::isCupPresent() {
-  if (irSensor.isCupPresent()) {
+  bool isCupPresent = irSensor.isCupPresent();
+  if (isCupPresent) {
     Serial.println("Cup is present!");
   }
   else {
     Serial.println("Cup is not present...");
   }
-  return irSensor.isCupPresent();
-}
-
-void Machine::recordIR() {
-  irSensor.takeAndPushReading();
-  long avg = irSensor.rollingMean();
-  Serial.print("machine rolling avg: ");
-  Serial.print(avg);
-  Serial.println();
+  return isCupPresent;
 }
