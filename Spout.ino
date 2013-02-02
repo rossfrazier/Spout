@@ -27,7 +27,7 @@
 #define PREFIX "/spout"
 WebServer webserver(PREFIX, 80);  //second param is port value
 
-//Machine machine;
+Machine machine;
 
 #define BUFFER_SIZE 16
 
@@ -116,5 +116,5 @@ void setup() {
 void loop() {
   // process incoming connections one at a time forever
   webserver.processConnection();
-  //machine.isCupPresent();
+  machine.isCupPresent();
 }
