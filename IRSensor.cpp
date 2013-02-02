@@ -21,8 +21,6 @@ void IRSensor::takeAndPushReadings() {
 }
 
 bool IRSensor::isCupPresent() {
-  takeAndPushReadings();
-
   Serial.print("avg: ");
   Serial.print(rollingMean());
   Serial.println();
