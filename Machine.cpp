@@ -6,11 +6,13 @@
 
 #include "Machine.h"
 
-Machine::Machine() : irSensor(0,100) {
-}
+#define IR_READINGS_COUNT 10
+#define IR_SENSOR_PIN 0
+
+Machine::Machine() : irSensor(IR_SENSOR_PIN,IR_READINGS_COUNT) {}
 
 const byte Machine::valveTransistorPins[] = {3,4,5,6,8,9};
-const byte Machine::infraredSensorPin = 0;
+const byte Machine::infraredSensorPin = IR_SENSOR_PIN;
 
 //setup pins as input/output, and make sure they start at LOW (valves and sensors off)
 void Machine::setPins() {
@@ -52,7 +54,7 @@ bool Machine::isCupPresent() {
 
 void Machine::recordIR() {
   irSensor.takeAndPushReading();
-  long avg = irSensor.rollingAverage();
+  long avg = irSensor.rollingMean();
   Serial.print("machine rolling avg: ");
   Serial.print(avg);
   Serial.println();

@@ -19,14 +19,15 @@ class Queue {
     void enqueue(int element);
     void dequeue();
     bool isEmpty();
-    long arraySum();
-    long mean();
+    long getSum();
+    long rollingMean();
 
   private:
     int _capacity;
     int _size;
     int _front;
     int _back;
+    long _sum;
     int * _elements;
 };
 
