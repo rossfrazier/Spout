@@ -6,10 +6,10 @@
 
 #include "Machine.h"
 
-#define IR_READINGS_COUNT 10
+#define IR_READINGS_COUNT 50
 #define IR_SENSOR_PIN 0
 
-Machine::Machine() : irSensor(IR_SENSOR_PIN,IR_READINGS_COUNT) {}
+Machine::Machine() : _irSensor(IR_SENSOR_PIN,IR_READINGS_COUNT) {}
 
 const byte Machine::valveTransistorPins[] = {3,4,5,6,8,9};
 const byte Machine::infraredSensorPin = IR_SENSOR_PIN;
@@ -43,7 +43,8 @@ void Machine::controlValve(valveStatus_t valveStatus, byte bottleNumber) {
 }
 
 bool Machine::isCupPresent() {
-  bool isCupPresent = irSensor.isCupPresent();
+  _irSensor.takeAndPushReadings();
+  bool isCupPresent = _irSensor.isCupPresent();
   if (isCupPresent) {
     Serial.println("Cup is present!");
   }

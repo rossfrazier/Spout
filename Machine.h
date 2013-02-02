@@ -42,7 +42,7 @@ class Machine {
     void controlValve(valveStatus_t valveStatus, byte bottleNumber);
 
   private:
-    IRSensor irSensor;
+    IRSensor _irSensor;
 };
 
 #endif

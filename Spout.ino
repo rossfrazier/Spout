@@ -27,7 +27,7 @@
 #define PREFIX "/spout"
 WebServer webserver(PREFIX, 80);  //second param is port value
 
-Machine machine;
+//Machine machine;
 
 #define BUFFER_SIZE 16
 
@@ -85,7 +85,7 @@ void newDrinkCmd(WebServer &server, WebServer::ConnectionType type, char *, bool
 void setup() {
   //SERIAL SETUP
   Serial.begin(9600);
-  Serial.println("program initialized");
+  Serial.println("Spout initialized");
   
   //PIN SETUP
   Machine::setPins();
@@ -94,7 +94,7 @@ void setup() {
   static uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xA9, 0xFE };
   static IPAddress ip_address(192,168,1,30);
   Ethernet.begin(mac, ip_address);
-  Serial.println("ethernet active");
+  Serial.println("Ethernet active");
   // print your local IP address:
   Serial.print("My IP address: ");
   for (byte thisByte = 0; thisByte < 4; thisByte++) {
@@ -116,5 +116,5 @@ void setup() {
 void loop() {
   // process incoming connections one at a time forever
   webserver.processConnection();
-  machine.isCupPresent();
+  //machine.isCupPresent();
 }
