@@ -8,7 +8,7 @@
 
 // this is an object constructor. it sets the object's initial state.
 Queue::Queue(int capacity) {
-  _capacity = 100;
+  _capacity = capacity;
   _size = 0;
   _front = 0;
   _back = -1;
@@ -20,23 +20,21 @@ Queue::~Queue() {
 }
 
 void Queue::enqueue(int element) {
-  Serial.print("reading : ");
-  Serial.print(element);
-  Serial.println();
-
   if (_size == _capacity) dequeue();
   _size++;
   _back++;
   if (_back == _capacity) _back = 0;
   _elements[_back] = element;
+  _sum += element;
   return;
 }
 
 void Queue::dequeue() {
-  if (_size == 0) return;
+  if (isEmpty()) return;
+  _sum -= _elements[_front];
   _size--;
   _front++;
-  if (_front == _size) _front = 0;
+  if (_front == _capacity) _front = 0;
   return;
 }
 
@@ -45,31 +43,11 @@ bool Queue::isEmpty() {
   return false;
 }
 
-long Queue::arraySum() {
-  if (_size < 100) return 0;
-  long queueSum;
-  queueSum = 0;
-  for (int i = _front; i <= _back; i++) {
-    queueSum += _elements[i];
-  }
-  Serial.print("function sum: ");
-  Serial.print(queueSum);
-  Serial.println();
-  return queueSum;
+long Queue::getSum() {
+  return _sum;
 }
 
-long Queue::mean() {
-  if (_size < 100) return 0;
-
-  Serial.print("sum: ");
-  Serial.print(arraySum());
-  Serial.println();
-
-  long arrayMean = arraySum() / 100;
-
-  Serial.print("mean: ");
-  Serial.print(arrayMean);
-  Serial.println();
-
+long Queue::rollingMean() {
+  long arrayMean = getSum() / _size;
   return arrayMean;
 }

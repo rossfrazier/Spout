@@ -10,14 +10,12 @@
 #include "SPI.h"
 #include "Queue.h"
 
-class IRSensor : private Queue {
+class IRSensor : public Queue {
   public:
     IRSensor(byte pin, int readingsCount);
 
     void takeAndPushReading();
-    long rollingAverage();
     bool isCupPresent();
-    long readingsSum();
 
   private:
     static const int presentCupThreshold;

@@ -17,15 +17,7 @@ void IRSensor::takeAndPushReading() {
   delay(1);
 }
 
-long IRSensor::rollingAverage() {
-  return mean();
-}
-
-long IRSensor::readingsSum() {
-  return arraySum();
-}
-
 bool IRSensor::isCupPresent() {
-  if (rollingAverage() <= presentCupThreshold) return true;
+  if (rollingMean() <= presentCupThreshold) return true;
   return false;
 }
