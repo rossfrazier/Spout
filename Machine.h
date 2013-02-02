@@ -23,7 +23,7 @@ class Machine {
     static byte bottleCount(); //length of valveTransistorPin array
 
     //IR sensor
-    bool isCupPresent(); //runs sensor n times and uses running avg to find if there's a cup
+    static bool isCupPresent(); //runs sensor n times and uses running avg to find if there's a cup
 
   protected:
     /* Stores digitial IO pin information
@@ -41,8 +41,6 @@ class Machine {
     };
     void controlValve(valveStatus_t valveStatus, byte bottleNumber);
 
-  private:
-    IRSensor _irSensor;
 };
 
 #endif
