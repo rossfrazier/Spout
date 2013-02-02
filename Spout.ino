@@ -116,5 +116,5 @@ void setup() {
 void loop() {
   // process incoming connections one at a time forever
   webserver.processConnection();
-  machine.recordIR();
+  machine.isCupPresent();
 }

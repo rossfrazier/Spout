@@ -27,6 +27,7 @@ void Drink::beginPouring() {
   }
   else {
     //if cup isn't there, run this method again (which loops until there's a cup)
+    delay(10);
     beginPouring();   
   }
 }

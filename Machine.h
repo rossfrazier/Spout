@@ -21,11 +21,9 @@ class Machine {
     //PIN SETUP, DATA, AND HELPER METHODS
     static void setPins(); //set pinModes and make sure all pins start digital written to LOW
     static byte bottleCount(); //length of valveTransistorPin array
-    bool isCupPresent(); //runs sensor n times and uses running avg to find if there's a cup
 
     //IR sensor
-    IRSensor irSensor;
-    void recordIR();
+    bool isCupPresent(); //runs sensor n times and uses running avg to find if there's a cup
 
   protected:
     /* Stores digitial IO pin information
@@ -42,6 +40,9 @@ class Machine {
       CLOSE
     };
     void controlValve(valveStatus_t valveStatus, byte bottleNumber);
+
+  private:
+    IRSensor irSensor;
 };
 
 #endif
