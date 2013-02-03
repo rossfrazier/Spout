@@ -29,7 +29,7 @@ class Pour: private Machine {
     //state getters
     byte bottle();
     int seconds();
-    int milliseconds();
+    unsigned long milliseconds();
   
   private:
     //instance variables
