@@ -38,7 +38,7 @@ int Pour::seconds() {
   return _seconds;
 }
 
-int Pour::milliseconds() {
+unsigned long Pour::milliseconds() {
   return _seconds*1000;
 }
 
