@@ -90,7 +90,7 @@ void setup() {
 
   //ETHERNET SETUP
   static uint8_t mac[6] = { 0x90, 0xA2, 0xDA, 0x00, 0xA9, 0xFE };
-  static IPAddress ip_address(192,168,1,30);
+  static IPAddress ip_address(10,0,0,50);
   Ethernet.begin(mac, ip_address);
   Serial.println("Ethernet active");
   // print your local IP address:
